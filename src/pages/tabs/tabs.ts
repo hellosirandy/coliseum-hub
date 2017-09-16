@@ -8,12 +8,11 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
   tab1Root = HomePage;
   tab2Root = SearchPage;
   tab3Root = ProfilePage;
 
-  constructor() {
-
+  constructor(
+  ) {
   }
 }

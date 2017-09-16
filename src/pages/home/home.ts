@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 import { LeaguePage } from '../league/league';
 
 @Component({
@@ -10,14 +10,16 @@ export class HomePage {
 
 
   constructor(
+    private modalCtrl: ModalController,
     private navCtrl: NavController
-  ) {
-
-  }
+  ) {}
 
   leagueChoosed(sport) {
     this.navCtrl.push(LeaguePage, { league: sport });
+  }
 
+  handleAddClick() {
+    
   }
 
 }

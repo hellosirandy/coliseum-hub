@@ -4,10 +4,14 @@
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/imgs/logo.png",
-    "sizes": "512x512",
+    "src": "assets/icon/touch-icon/android-touch-icon-192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "assets/icon/touch-icon/android-touch-icon-128.png",
+    "sizes": "128x128",
     "type": "image/png"
   }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+  "background_color": "#000000",
+  "theme_color": "#ebc34f"
 }

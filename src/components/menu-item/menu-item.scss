@@ -1,4 +1,10 @@
 menu-item {
+  ion-item {
+    cursor: pointer;
+  }
+  ion-item:hover {
+    background-color: #f2f2f2;
+  }
   ion-thumbnail {
     min-height: 0 !important;
     min-width: 0 !important;

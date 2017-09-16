@@ -1,11 +1,7 @@
 menu-list {
-  ion-thumbnail {
-    min-height: 0 !important;
-    min-width: 0 !important;
-
-    img {
-      width: auto !important;
-      height: auto !important;
-    }
+  .sport-menu {
+    margin-left: 40px;
+    overflow: hidden;
+    transition: max-height 0.2s linear;
   }
 }

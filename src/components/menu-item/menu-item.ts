@@ -9,7 +9,7 @@ export class MenuItemComponent {
   @Input() collapse: boolean;
 
   constructor() {
-    console.log(this.thumbnail);
+    
   }
 
 }

@@ -6,9 +6,16 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    private navCtrl: NavController
+  ) {
 
+  }
+
+  handleSportClick(sport) {
+    console.log(sport);
   }
 
 }

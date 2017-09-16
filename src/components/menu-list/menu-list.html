@@ -1,0 +1,34 @@
+<ion-list>
+  <menu-item [thumbnail]="'assets/images/baseball.png'" [title]="'Baseball'" [collapse]="true"></menu-item>
+
+  <div class="sport-menu" *ngIf="false">
+    <ion-list>
+      <menu-item></menu-item>
+    </ion-list>
+    <!-- <menu-list [itemList]="baseball"></menu-list> -->
+  </div>
+  <menu-item [thumbnail]="'assets/images/football.png'" [title]="'Football'" [collapse]="true"></menu-item>
+
+  <div class="sport-menu">
+    <menu-list [itemList]="football"></menu-list>
+  </div>
+  <menu-item [thumbnail]="'assets/images/basketball.png'" [title]="'Basketball'" [collapse]="true"></menu-item>
+
+  <div class="sport-menu">
+    <menu-list [itemList]="basketball"></menu-list>
+  </div>
+  <menu-item [thumbnail]="'assets/images/hockey.png'" [title]="'Hockey'" [collapse]="true"></menu-item>
+
+  <div class="sport-menu">
+    <menu-list [itemList]="hockey"></menu-list>
+  </div>
+</ion-list>
+
+<!-- <ion-list>
+  <ion-item *ngFor="let item of itemList">
+    <ion-thumbnail item-start>
+      <img src={{item.img}} alt="">
+    </ion-thumbnail>
+    <h3>{{item.title}}</h3>
+  </ion-item>
+</ion-list> -->

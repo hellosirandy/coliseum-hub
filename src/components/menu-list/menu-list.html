@@ -13,7 +13,8 @@
         *ngFor="let leagueItem of sportItem.collapse"
         [thumbnail]="leagueItem.thumbnail"
         [title]="leagueItem.title"
-        [collapse]="leagueItem.collapse.length > 0">
+        [collapse]="leagueItem.collapse.length > 0"
+        (click)="leagueChoosed.emit(leagueItem.title)">
       </menu-item>
     </div>
   </div>

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MenuItem } from '../../models/menu-item';
 @Component({
   selector: 'menu-list',
   templateUrl: 'menu-list.html'
 })
 export class MenuListComponent {
+  @Output() leagueChoosed = new EventEmitter<string>();
 
   baseballList: MenuItem[] = [
     {title: 'MLB', thumbnail: 'assets/images/mlb.png', collapse: []},

@@ -10,12 +10,10 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { DirectivesModule } from '../directives/directives.module';
 import { ComponentsModule } from '../components/components.module';
+import { PagesModule } from '../pages/pages.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-// import { MenuListComponent } from '../components/menu-list/menu-list';
-
 
 @NgModule({
   declarations: [
@@ -24,13 +22,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     SearchPage,
     ProfilePage,
-    // MenuListComponent,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     DirectivesModule,
-    ComponentsModule
+    ComponentsModule,
+    PagesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +37,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     SearchPage,
     ProfilePage,
-    // MenuListComponent,
   ],
   providers: [
     StatusBar,

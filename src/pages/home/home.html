@@ -9,47 +9,10 @@
 
 <ion-menu type="overlay" [content]="mycontent" persistent="true">
   <ion-content>
-    <menu-list></menu-list>
-    <!-- <ion-list>
-      <menu-item [thumbnail]="'assets/images/baseball.png'" [title]="'Baseball'" [collapse]="true"></menu-item>
-
-      <div class="sport-menu" *ngIf="false">
-        <menu-list [itemList]="baseball"></menu-list>
-      </div>
-      <menu-item [thumbnail]="'assets/images/football.png'" [title]="'Football'" [collapse]="true"></menu-item>
-
-      <div class="sport-menu">
-        <menu-list [itemList]="football"></menu-list>
-      </div>
-      <menu-item [thumbnail]="'assets/images/basketball.png'" [title]="'Basketball'" [collapse]="true"></menu-item>
-
-      <div class="sport-menu">
-        <menu-list [itemList]="basketball"></menu-list>
-      </div>
-      <menu-item [thumbnail]="'assets/images/hockey.png'" [title]="'Hockey'" [collapse]="true"></menu-item>
-
-      <div class="sport-menu">
-        <menu-list [itemList]="hockey"></menu-list>
-      </div>
-    </ion-list> -->
+    <menu-list (leagueChoosed)="leagueChoosed($event)"></menu-list>
   </ion-content>
 </ion-menu>
 
 <ion-content padding>
-  <!-- <ion-grid padding>
-    <ion-row justify-content-around>
-      <ion-col col-6 col-xl-2>
-        <div class="sport-btns" square (click)="handleSportClick('baseball')">Baseball</div>
-      </ion-col>
-      <ion-col col-6 col-xl-2>
-        <div class="sport-btns" square (click)="handleSportClick('football')">Football</div>
-      </ion-col>
-      <ion-col col-6 col-xl-2>
-        <div class="sport-btns" square (click)="handleSportClick('basketball')">Basketball</div>
-      </ion-col>
-      <ion-col col-6 col-xl-2>
-        <div class="sport-btns" square (click)="handleSportClick('hockey')">Hockey</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
+
 </ion-content>

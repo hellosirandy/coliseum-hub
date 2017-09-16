@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { LeaguePage } from '../league/league';
+import { NewStadiumPage } from '../new-stadium/new-stadium';
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,8 @@ export class HomePage {
   }
 
   handleAddClick() {
-    
+    let modal = this.modalCtrl.create(NewStadiumPage);
+    modal.present();
   }
 
 }

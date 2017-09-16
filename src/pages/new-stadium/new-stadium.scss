@@ -1,0 +1,16 @@
+page-new-stadium {
+  ion-header {
+    button {
+      ion-icon {
+        font-size: 2rem;
+      }
+
+      @media (max-width: $md-screen) {
+        ion-icon {
+          color: #4d4d4d;
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}

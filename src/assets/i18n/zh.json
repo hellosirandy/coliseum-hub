@@ -13,5 +13,8 @@
   "SPORT": "運動",
   "LEAGUE": "聯盟",
   "TENANT": "主隊",
-  "UPLOAD_IMAGE": "上傳照片"
+  "UPLOAD_IMAGE": "上傳照片",
+  "SIGN_IN_WITH_GOOGLE": "透過 Google 登入",
+  "SIGN_IN_WITH_FACEBOOK": "透過 Facebook 登入",
+  "SIGN_OUT": "登出"
 }

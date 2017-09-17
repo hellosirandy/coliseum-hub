@@ -14,7 +14,7 @@
 </ion-menu>
 
 <ion-content padding>
-  <ion-fab>
+  <ion-fab *ngIf="user">
     <button ion-fab (click)="handleAddClick()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

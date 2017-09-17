@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +8,30 @@
 
 
 <ion-content padding>
-  <button ion-button block (click)="handleLoginClick()">LOGIN</button>
+  <div class="profile-content">
+    <div *ngIf="user">
+      <!-- <div class="profile-pic-div profile-div">
+        <div class="profile-pic-wrapper">
+          <div class="profile-pic" square [style.backgroundImage]="'url('+user.photoURL+')'"></div>
+        </div>
+      </div> -->
+      <div class="profile-content-div profile-div">
+        <h3>{{user.displayName}}</h3>
+      </div>
+      <div class="profile-button-div profile-div">
+        <button ion-button block (click)="handleSignOutClick()" icon-start>
+          {{ 'SIGN_OUT' | translate }}
+        </button>
+      </div>
+    </div>
+    <!-- <button *ngIf="!user" ion-button block (click)="handleSignInWithGoogleClick()" icon-start>
+      <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+      {{ 'SIGN_IN_WITH_GOOGLE' | translate }}
+    </button> -->
+    <button *ngIf="!user" color="facebook" ion-button block (click)="handleSignInWithFacebookClick()" icon-start>
+      <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+      {{ 'SIGN_IN_WITH_FACEBOOK' | translate }}
+    </button>
+
+  </div>
 </ion-content>

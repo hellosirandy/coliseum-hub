@@ -1,3 +1,27 @@
 page-profile {
+  ion-content {
+    .profile-content {
+      width: 70%;
+      margin: auto;
+      max-width: 500px;
+      .profile-pic-wrapper {
+        margin: auto;
+        width: 60%;
+        .profile-pic {
+          border-radius: 50%;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
 
+      .profile-content-div {
+        text-align: center;
+      }
+
+      .profile-div {
+        margin-bottom: 20px;
+      }
+    }
+  }
 }

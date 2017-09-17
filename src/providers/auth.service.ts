@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { Platform } from 'ionic-angular';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +10,8 @@ export class AuthService {
   private currentUser: firebase.User = null;
 
   constructor(
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private platform: Platform,
   ) {
     this.authState = this.afAuth.authState;
     this.authState.subscribe(user => {
@@ -29,7 +31,15 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider() );
   }
 
-  isLoggedIn() {
+  signInWithFacebook() {
+    if (this.platform.platforms().indexOf('mobile') > -1) {
+      return this.afAuth.auth.signInWithRedirect( new firebase.auth.FacebookAuthProvider() );
+    } else {
+      return this.afAuth.auth.signInWithPopup( new firebase.auth.FacebookAuthProvider() );
+    }
+  }
+
+  isSignedIn() {
     if (this.currentUser == null) {
       return false;
     }
@@ -38,6 +48,10 @@ export class AuthService {
 
   signOut() {
     return this.afAuth.auth.signOut();
+  }
+
+  updateUserProfile(updates) {
+    return this.currentUser.updateProfile(updates);
   }
 
 }

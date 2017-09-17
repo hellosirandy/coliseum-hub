@@ -24,15 +24,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../providers/auth.service';
+import { StorageService } from '../providers/storage.service';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyDJbA4eaykWY9PRINAoHocmnAhvLgsXD5Y",
-  authDomain: "coliseum-hub.firebaseapp.com",
-  databaseURL: "https://coliseum-hub.firebaseio.com",
-  projectId: "coliseum-hub",
-  storageBucket: "coliseum-hub.appspot.com",
-  messagingSenderId: "783733786010"
-}
+import { FirebaseConfig } from '../environments/environment';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -61,7 +55,7 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    AngularFireModule.initializeApp(firebaseConfig, 'coliseum-hub'),
+    AngularFireModule.initializeApp(FirebaseConfig, 'coliseum-hub'),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
   ],
@@ -78,6 +72,7 @@ export function HttpLoaderFactory(http: Http) {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
+    StorageService,
   ]
 })
 export class AppModule {}

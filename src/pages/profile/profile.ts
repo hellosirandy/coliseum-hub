@@ -5,21 +5,34 @@ import { AuthService } from '../../providers/auth.service';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
+  user = null;
 
   constructor(
     private auth: AuthService,
   ) {
   }
 
-  ionViewDidLoad() {
-
+  ngOnInit() {
+    this.auth.getAuthState().subscribe(user => {
+      this.user = user;
+    });
   }
 
-  handleLoginClick() {
+  handleSignInWithGoogleClick() {
     this.auth.signInWithGoogle().then(user => {
       console.log(user);
     });
+  }
+
+  handleSignInWithFacebookClick() {
+    this.auth.signInWithFacebook().then(user => {
+      console.log(user);
+    });
+  }
+
+  handleSignOutClick() {
+    this.auth.signOut();
   }
 
 }

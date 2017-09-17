@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Config, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -11,9 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp implements OnInit {
+export class MyApp {
   rootPage:any = TabsPage;
-  user = null;
 
   constructor(
     private config: Config,
@@ -21,21 +20,12 @@ export class MyApp implements OnInit {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private translate: TranslateService,
-    private auth: AuthService,
-    private db: AngularFireDatabase,
   ) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
     });
     this.initTranslate();
-  }
-
-  ngOnInit() {
-    this.auth.getAuthState().subscribe(user => {
-      this.user = user;
-      console.log(user);
-    });
   }
 
   initTranslate() {

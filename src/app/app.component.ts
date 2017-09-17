@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Config, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../providers/auth.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
   rootPage:any = TabsPage;
+  user = null;
 
   constructor(
     private config: Config,
@@ -18,14 +21,21 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private translate: TranslateService,
+    private auth: AuthService,
+    private db: AngularFireDatabase,
   ) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
     this.initTranslate();
+  }
+
+  ngOnInit() {
+    this.auth.getAuthState().subscribe(user => {
+      this.user = user;
+      console.log(user);
+    });
   }
 
   initTranslate() {
@@ -37,7 +47,7 @@ export class MyApp {
     } else {
       this.translate.use('zh'); // Set your language here
     }
-    
+
     this.translate.get('BACK_BUTTON_TEXT').subscribe((res: string) => {
       this.config.set('ios', 'backButtonText', res);
     });

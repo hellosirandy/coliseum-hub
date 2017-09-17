@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { LeaguePage } from '../league/league';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
+import { AuthService } from '../../providers/auth.service';
 
 @Component({
   selector: 'page-home',
@@ -11,9 +12,12 @@ export class HomePage {
 
 
   constructor(
+    private auth: AuthService,
     private modalCtrl: ModalController,
     private navCtrl: NavController
-  ) {}
+  ) {
+    
+  }
 
   leagueChoosed(sport) {
     this.navCtrl.push(LeaguePage, { league: sport });

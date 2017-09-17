@@ -1,12 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../providers/auth.service';
 
 @Component({
   selector: 'page-profile',
@@ -14,11 +7,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private auth: AuthService,
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+
+  }
+
+  handleLoginClick() {
+    this.auth.signInWithGoogle().then(user => {
+      console.log(user);
+    });
   }
 
 }

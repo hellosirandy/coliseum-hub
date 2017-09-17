@@ -20,6 +20,19 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthService } from '../providers/auth.service';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDJbA4eaykWY9PRINAoHocmnAhvLgsXD5Y",
+  authDomain: "coliseum-hub.firebaseapp.com",
+  databaseURL: "https://coliseum-hub.firebaseio.com",
+  projectId: "coliseum-hub",
+  storageBucket: "coliseum-hub.appspot.com",
+  messagingSenderId: "783733786010"
+}
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,6 +49,7 @@ export function HttpLoaderFactory(http: Http) {
   ],
   imports: [
     BrowserModule,
+    IonicModule.forRoot(MyApp),
     DirectivesModule,
     ComponentsModule,
     PagesModule,
@@ -47,8 +61,9 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    IonicModule.forRoot(MyApp),
-
+    AngularFireModule.initializeApp(firebaseConfig, 'coliseum-hub'),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,6 +77,7 @@ export function HttpLoaderFactory(http: Http) {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService,
   ]
 })
 export class AppModule {}

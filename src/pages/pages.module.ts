@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LeaguePage } from './league/league';
-import { NewStadiumPage } from './new-stadium/new-stadium';
+import { EditStadiumPage } from './edit-stadium/edit-stadium';
 import { TranslateModule } from '@ngx-translate/core';
+import { DirectivesModule } from '../directives/directives.module';
 
 @NgModule({
 	declarations: [
     LeaguePage,
-		NewStadiumPage,
+		EditStadiumPage,
 	],
 	imports: [
 		IonicPageModule.forChild(LeaguePage),
-		IonicPageModule.forChild(NewStadiumPage),
-		TranslateModule
+		IonicPageModule.forChild(EditStadiumPage),
+		TranslateModule,
+		DirectivesModule
 	],
 	exports: [
     LeaguePage,
-		NewStadiumPage
+		EditStadiumPage
 	]
 })
 export class PagesModule {}

@@ -5,7 +5,7 @@ import { IonicPageModule } from 'ionic-angular';
 @NgModule({
 	declarations: [
 		MenuListComponent,
-    MenuItemComponent
+    MenuItemComponent,
 	],
 	imports: [
 		IonicPageModule.forChild(MenuListComponent),
@@ -13,7 +13,7 @@ import { IonicPageModule } from 'ionic-angular';
 	],
 	exports: [
 		MenuListComponent,
-    MenuItemComponent
+    MenuItemComponent,
 	]
 })
 export class ComponentsModule {}

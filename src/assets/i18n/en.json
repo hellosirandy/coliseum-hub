@@ -3,5 +3,15 @@
   "HOME": "Home",
   "SEARCH": "Search",
   "PROFILE": "Profile",
-  "NEW_STADIUM": "New stadium"
+  "NEW_STADIUM": "New stadium",
+  "EDIT_STADIUM": "Edit stadium",
+  "NAME": "Name",
+  "LOCATION": "Location",
+  "OPENING_DATE": "Opening date",
+  "CAPACITY": "Capacity",
+  "SAVE": "Save",
+  "SPORT": "Sport",
+  "LEAGUE": "League",
+  "TENANT": "Tenant",
+  "UPLOAD_IMAGE": "Upload image"
 }

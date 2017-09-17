@@ -1,0 +1,93 @@
+<!--
+  Generated template for the EditStadiumPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{ (create ? 'NEW_STADIUM' : 'EDIT_STADIUM') | translate }}</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'NAME' | translate }}</ion-label>
+      <ion-input ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'SPORT' | translate }}</ion-label>
+      <ion-select multiple="true">
+        <ion-option>Baseball</ion-option>
+        <ion-option>Football</ion-option>
+        <ion-option>Basketball</ion-option>
+        <ion-option>Hockey</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'LEAGUE' | translate }}</ion-label>
+      <ion-select multiple="true">
+        <ion-option>MLB</ion-option>
+        <ion-option>NPB</ion-option>
+        <ion-option>NFL</ion-option>
+        <ion-option>NBA</ion-option>
+        <ion-option>NHL</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'TENANT' | translate }}</ion-label>
+      <ion-select multiple="true">
+        <ion-option>New York Yankees</ion-option>
+        <ion-option>Los Angelas Lakers</ion-option>
+        <ion-option>Pittsburgh Steelers</ion-option>
+        <ion-option>New England Patriots</ion-option>
+        <ion-option>Cincinnati Reds</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'LOCATION' | translate }}</ion-label>
+      <ion-input ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'OPENING_DATE' | translate }}</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>{{ 'CAPACITY' | translate }}</ion-label>
+      <ion-input type="number" max=150000 min=10000></ion-input>
+    </ion-item>
+    <ion-item class="file-uploader" (click)="handleFileUploadClick()">
+      <ion-label>
+        <input type="file"
+          #fileInput multiple
+          (change)="handleFileSelected($event.target.files)"
+          accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+        <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon> {{ 'UPLOAD_IMAGE' | translate }}
+      </ion-label>
+    </ion-item>
+    <ion-item class="file-preview">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3 *ngFor="let img of previewImages" square>
+            <div square class="img-cell" [style.backgroundImage]="'url('+img+')'">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <!-- <ion-item>
+    </ion-item> -->
+  </ion-list>
+
+  <button ion-button block>{{ 'SAVE' | translate }}</button>
+</ion-content>

@@ -3,5 +3,15 @@
   "HOME": "首頁",
   "SEARCH": "搜尋",
   "PROFILE": "個人檔案",
-  "NEW_STADIUM": "新增球場"
+  "NEW_STADIUM": "新增球場",
+  "EDIT_STADIUM": "編輯球場",
+  "NAME": "名稱",
+  "LOCATION": "地點",
+  "OPENING_DATE": "啟用日期",
+  "CAPACITY": "容納人數",
+  "SAVE": "儲存",
+  "SPORT": "運動",
+  "LEAGUE": "聯盟",
+  "TENANT": "主隊",
+  "UPLOAD_IMAGE": "上傳照片"
 }

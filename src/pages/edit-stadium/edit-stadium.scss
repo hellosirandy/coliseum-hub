@@ -1,0 +1,43 @@
+page-edit-stadium {
+  ion-content {
+    .scroll-content {
+      padding: 32px !important;
+    }
+    ion-list {
+      ion-item {
+        padding-left: 0 !important;
+      }
+
+      ion-item.file-uploader {
+        cursor: pointer;
+        margin-top: 36px;
+        border: dashed 2px map-get($colors, primary);
+        text-align: center;
+        .item-inner {
+          border-bottom: none !important;
+          ion-label {
+            color: map-get($colors, primary);
+            margin: 24px 0;
+          }
+          input[type="file"] {
+            display: none;
+          }
+        }
+      }
+
+      ion-item.file-preview {
+        .item-inner {
+          border-bottom: none !important;
+        }
+      }
+    }
+    .img-cell {
+      border: dashed 1.5px #b5b5b5;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+
+}

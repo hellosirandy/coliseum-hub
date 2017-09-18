@@ -20,74 +20,101 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'NAME' | translate }}</ion-label>
-      <ion-input ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'SPORT' | translate }}</ion-label>
-      <ion-select multiple="true">
-        <ion-option>Baseball</ion-option>
-        <ion-option>Football</ion-option>
-        <ion-option>Basketball</ion-option>
-        <ion-option>Hockey</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'LEAGUE' | translate }}</ion-label>
-      <ion-select multiple="true">
-        <ion-option>MLB</ion-option>
-        <ion-option>NPB</ion-option>
-        <ion-option>NFL</ion-option>
-        <ion-option>NBA</ion-option>
-        <ion-option>NHL</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'TENANT' | translate }}</ion-label>
-      <ion-select multiple="true">
-        <ion-option>New York Yankees</ion-option>
-        <ion-option>Los Angelas Lakers</ion-option>
-        <ion-option>Pittsburgh Steelers</ion-option>
-        <ion-option>New England Patriots</ion-option>
-        <ion-option>Cincinnati Reds</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'LOCATION' | translate }}</ion-label>
-      <ion-input ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'OPENING_DATE' | translate }}</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>{{ 'CAPACITY' | translate }}</ion-label>
-      <ion-input type="number" max=150000 min=10000></ion-input>
-    </ion-item>
-    <ion-item class="file-uploader" (click)="handleFileUploadClick()">
-      <ion-label>
-        <input type="file"
-          #fileInput multiple
-          (change)="handleFileSelected($event.target.files)"
-          accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
-        <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon> {{ 'UPLOAD_IMAGE' | translate }}
-      </ion-label>
-    </ion-item>
-    <ion-item class="file-preview">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3 *ngFor="let img of previewImages" square>
-            <div square class="img-cell" [style.backgroundImage]="'url('+img+')'">
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <!-- <ion-item>
-    </ion-item> -->
-  </ion-list>
-
-  <button ion-button block>{{ 'SAVE' | translate }}</button>
+  <form [formGroup]="editStadiumForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'NAME' | translate }}</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('name').invalid && editStadiumForm.dirty">
+        * {{ 'NAME' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'SPORT' | translate }}</ion-label>
+        <ion-select multiple="true" formControlName="sports">
+          <ion-option>Baseball</ion-option>
+          <ion-option>Football</ion-option>
+          <ion-option>Basketball</ion-option>
+          <ion-option>Hockey</ion-option>
+        </ion-select>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('sports').invalid && editStadiumForm.dirty">
+        * {{ 'SPORT' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'LEAGUE' | translate }}</ion-label>
+        <ion-select multiple="true" formControlName="leagues">
+          <ion-option>MLB</ion-option>
+          <ion-option>NPB</ion-option>
+          <ion-option>NFL</ion-option>
+          <ion-option>NBA</ion-option>
+          <ion-option>NHL</ion-option>
+        </ion-select>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('leagues').invalid && editStadiumForm.dirty">
+        * {{ 'LEAGUE' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'TENANT' | translate }}</ion-label>
+        <ion-select multiple="true" formControlName="tenants">
+          <ion-option>New York Yankees</ion-option>
+          <ion-option>Los Angelas Lakers</ion-option>
+          <ion-option>Pittsburgh Steelers</ion-option>
+          <ion-option>New England Patriots</ion-option>
+          <ion-option>Cincinnati Reds</ion-option>
+        </ion-select>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('tenants').invalid && editStadiumForm.dirty">
+        * {{ 'TENANT' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'LOCATION' | translate }}</ion-label>
+        <ion-input formControlName="location"></ion-input>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('location').invalid && editStadiumForm.dirty">
+        * {{ 'LOCATION' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'OPENING_DATE' | translate }}</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="openingDate"></ion-datetime>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('openingDate').invalid && editStadiumForm.dirty">
+        * {{ 'OPENING_DATE' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'CAPACITY' | translate }}</ion-label>
+        <ion-input type="number" max=150000 min=10000 formControlName="capacity"></ion-input>
+      </ion-item>
+      <span class="form-errors"
+        *ngIf="editStadiumForm.get('capacity').invalid && editStadiumForm.dirty">
+        * {{ 'CAPACITY' | translate }}{{ 'IS_REQUIRED' | translate }}
+      </span>
+      <ion-item class="file-uploader" (click)="handleFileUploadClick()">
+        <ion-label>
+          <input type="file"
+            #fileInput multiple
+            (change)="handleFileSelected($event.target.files)"
+            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+          <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon> {{ 'UPLOAD_IMAGE' | translate }}
+        </ion-label>
+      </ion-item>
+      <ion-item class="file-preview">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 *ngFor="let img of previewImages" square>
+              <div square class="img-cell" [style.backgroundImage]="'url('+img+')'">
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    <button type="submit" ion-button block>{{ 'SAVE' | translate }}</button>
+  </form>
 </ion-content>

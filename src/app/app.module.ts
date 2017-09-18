@@ -25,6 +25,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../providers/auth.service';
 import { StorageService } from '../providers/storage.service';
+import { DatabaseService } from '../providers/database.service';
 
 import { FirebaseConfig } from '../environments/environment';
 
@@ -73,6 +74,7 @@ export function HttpLoaderFactory(http: Http) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     StorageService,
+    DatabaseService
   ]
 })
 export class AppModule {}

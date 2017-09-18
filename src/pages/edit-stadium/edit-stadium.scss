@@ -30,6 +30,10 @@ page-edit-stadium {
           border-bottom: none !important;
         }
       }
+
+      .form-errors {
+        color: map-get($colors, danger);
+      }
     }
     .img-cell {
       border: dashed 1.5px #b5b5b5;

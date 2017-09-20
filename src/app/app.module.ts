@@ -15,7 +15,6 @@ import { PagesModule } from '../pages/pages.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TranslateService } from '@ngx-translate/core';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -74,7 +73,7 @@ export function HttpLoaderFactory(http: Http) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     StorageService,
-    DatabaseService
+    DatabaseService,
   ]
 })
 export class AppModule {}

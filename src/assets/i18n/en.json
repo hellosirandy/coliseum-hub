@@ -7,6 +7,7 @@
   "EDIT_STADIUM": "Edit stadium",
   "NAME": "Name",
   "LOCATION": "Location",
+  "ARCHITECT": "Architect",
   "OPENING_DATE": "Opening date",
   "CAPACITY": "Capacity",
   "SAVE": "Save",
@@ -17,5 +18,6 @@
   "SIGN_IN_WITH_GOOGLE": "Sign in with Google",
   "SIGN_IN_WITH_FACEBOOK": "Sign in with Facebook",
   "SIGN_OUT": "Sign out",
-  "IS_REQUIRED": " is required"
+  "IS_REQUIRED": " is required",
+  "STADIUM_ADDED": "You have added {{stadium}}"
 }

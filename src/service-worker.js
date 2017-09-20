@@ -5,7 +5,7 @@
 
 
 'use strict';
-importScripts('./build/sw-toolbox.js');
+importScripts('../www/build/sw-toolbox.js');
 
 self.toolbox.options.cache = {
   name: 'ionic-cache'
@@ -14,10 +14,10 @@ self.toolbox.options.cache = {
 // pre-cache our key assets
 self.toolbox.precache(
   [
-    './build/main.js',
-    './build/vendor.js',
-    './build/main.css',
-    './build/polyfills.js',
+    '../www/build/main.js',
+    '../www/build/vendor.js',
+    '../www/build/main.css',
+    '../www/build/polyfills.js',
     'index.html',
     'manifest.json'
   ]

@@ -13,7 +13,15 @@ export class DatabaseService {
   }
 
   newStadium(stadium: Stadium) {
-    console.log(stadium);
     return this.database.list('/stadiums').push(stadium);
+  }
+
+  getLeagueStadium(league: string) {
+    return <FirebaseListObservable<Stadium[]>>this.database.list('/stadiums', {
+      query: {
+        orderByChild: `leagues/${league}`,
+        equalTo: true
+      }
+    });
   }
 }

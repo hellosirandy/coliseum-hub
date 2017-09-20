@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { LeaguePage } from '../league/league';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
@@ -8,7 +8,7 @@ import { AuthService } from '../../providers/auth.service';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit {
+export class HomePage {
   user=null;
 
   constructor(
@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
 
   }
 
-  ngOnInit() {
+  ionViewDidLoad() {
     this.auth.getAuthState().subscribe(user => {
       this.user = user;
     });

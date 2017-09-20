@@ -7,6 +7,7 @@
   "EDIT_STADIUM": "編輯球場",
   "NAME": "名稱",
   "LOCATION": "地點",
+  "ARCHITECT": "建築師",
   "OPENING_DATE": "啟用日期",
   "CAPACITY": "容納人數",
   "SAVE": "儲存",
@@ -17,5 +18,6 @@
   "SIGN_IN_WITH_GOOGLE": "透過 Google 登入",
   "SIGN_IN_WITH_FACEBOOK": "透過 Facebook 登入",
   "SIGN_OUT": "登出",
-  "IS_REQUIRED": "是必填的"
+  "IS_REQUIRED": "是必填的",
+  "STADIUM_ADDED": "您已新增 {{stadium}}"
 }

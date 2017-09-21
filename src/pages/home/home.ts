@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
-import { LeaguePage } from '../league/league';
+import { LeagueViewPage } from '../league-view/league-view';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
 
 import { AuthService } from '../../providers/auth.service';
@@ -28,7 +28,7 @@ export class HomePage {
   }
 
   leagueChoosed(sport) {
-    this.navCtrl.push(LeaguePage, { league: sport });
+    this.navCtrl.push(LeagueViewPage, { league: sport });
   }
 
   handleAddClick() {

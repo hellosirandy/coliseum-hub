@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Sports, Leagues, Teams } from '../statics/sports-leagues-teams';
 
 @Injectable()
 export class StaticService {
@@ -7,13 +6,5 @@ export class StaticService {
 
   ) {
 
-  }
-
-  getSports() {
-    return Sports;
-  }
-
-  getLeagues(sports: string[]) {
-    
   }
 }

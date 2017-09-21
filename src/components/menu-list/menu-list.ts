@@ -1,10 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MenuItem } from '../../models/menu-item';
-import { Sports, Leagues, Teams } from '../../statics/sports-leagues-teams';
+import { Sports, Leagues } from '../../statics/sports-leagues-teams';
 
 import { DatabaseService } from '../../providers/database.service';
-
-import { Stadium } from '../../models/stadium';
 
 @Component({
   selector: 'menu-list',
@@ -51,7 +49,7 @@ export class MenuListComponent implements OnInit {
     });
   }
 
-  handleSportClick(sport) {
+  handleSportTap(sport) {
     if (this.focusSport !== sport) {
       this.focusSport = sport;
     } else {

@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
-import { DatabaseService } from '../../providers/database.service';
+import { NavController, NavParams } from 'ionic-angular';
+import { StadiumViewPage } from '../stadium-view/stadium-view';
+
 import { Stadium } from '../../models/stadium';
 
+import { DatabaseService } from '../../providers/database.service';
+
 @Component({
-  selector: 'page-league',
-  templateUrl: 'league.html',
+  selector: 'page-league-view',
+  templateUrl: 'league-view.html',
 })
-export class LeaguePage {
+export class LeagueViewPage {
   title: string='';
   stadiums: Stadium[];
 
   constructor(
     private database: DatabaseService,
+    private navCtrl: NavController,
     private navParams: NavParams,
   ) {
   }
@@ -23,6 +27,10 @@ export class LeaguePage {
     this.database.getLeagueStadium(league).subscribe((res: Stadium[]) => {
       this.stadiums = res;
     });
+  }
+
+  handleStadiumTap(stadium) {
+    this.navCtrl.push(StadiumViewPage, { stadium: stadium });
   }
 
 }

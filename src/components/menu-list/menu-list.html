@@ -4,7 +4,7 @@
       [thumbnail]="sportItem.thumbnail"
       [title]="sportItem.title.charAt(0).toUpperCase()+sportItem.title.slice(1)"
       [collapse]="sportItem.collapse.length > 0"
-      (click)="handleSportClick(sportItem.title)">
+      (tap)="handleSportTap(sportItem.title)">
     </menu-item>
     <div
       class="sport-menu"
@@ -15,7 +15,7 @@
         [title]="leagueItem.title"
         [subtitle]="category[leagueItem.title]"
         [collapse]="leagueItem.collapse.length > 0"
-        (click)="leagueChoosed.emit(leagueItem.title)">
+        (tap)="leagueChoosed.emit(leagueItem.title)">
       </menu-item>
     </div>
   </div>

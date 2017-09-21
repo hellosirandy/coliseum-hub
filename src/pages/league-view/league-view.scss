@@ -1,7 +1,9 @@
-page-league {
+page-league-view {
   .stadium {
     border: 1.2px solid #cdcdcd;
     box-shadow: 2px 3px 5px #969696;
+    transition: box-shadow 0.2s ease;
+    cursor: pointer;
     .preview-image {
       width: 100%;
       background-size: contain;
@@ -28,6 +30,7 @@ page-league {
       }
     }
   }
-
-
+  .stadium:hover {
+    box-shadow: 2px 3px 20px #969696;
+  }
 }

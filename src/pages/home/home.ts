@@ -33,7 +33,7 @@ export class HomePage {
 
   handleAddClick() {
     if (this.user) {
-      let modal = this.modalCtrl.create(EditStadiumPage, { create: true });
+      let modal = this.modalCtrl.create(EditStadiumPage);
       modal.present();
     }
   }

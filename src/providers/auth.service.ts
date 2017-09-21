@@ -23,7 +23,7 @@ export class AuthService {
     });
   }
 
-  getAuthState() {
+  getAuthState():Observable<any> {
     return this.authState;
   }
 

@@ -16,6 +16,10 @@ export class DatabaseService {
     return this.database.list('/stadiums').push(stadium);
   }
 
+  updateStadium(id: string, updates:any) {
+    return this.database.list('/stadiums').update(id, updates);
+  }
+
   getLeagueStadium(league: string):FirebaseListObservable<Stadium[]> {
     return this.database.list('/stadiums', {
       query: {

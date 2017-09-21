@@ -19,5 +19,6 @@
   "SIGN_IN_WITH_FACEBOOK": "Sign in with Facebook",
   "SIGN_OUT": "Sign out",
   "IS_REQUIRED": " is required",
-  "STADIUM_ADDED": "You have added {{stadium}}"
+  "STADIUM_ADDED": "You have added {{stadium}}",
+  "STADIUM_UPDATED": "You have updated {{stadium}}"
 }

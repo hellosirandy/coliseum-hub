@@ -22,7 +22,7 @@ export class EditStadiumPage implements OnInit {
   editStadiumForm: FormGroup;
   submitTried: boolean=false;
 
-  create: boolean=false;
+  stadium: any=null;
 
   fileList: any[]=[];
   previewImages: string[]=[];
@@ -39,20 +39,24 @@ export class EditStadiumPage implements OnInit {
     private toastCtrl: ToastController,
     private translate: TranslateService,
   ) {
-    this.create = params.get('create');
+    this.stadium = params.get('stadium');
   }
 
   ngOnInit() {
     this.editStadiumForm = new FormGroup({
-      'name': new FormControl(null, Validators.required),
-      'sports': new FormControl(null, Validators.required),
-      'leagues': new FormControl({value: null, disabled: true}, Validators.required),
-      'tenants': new FormControl({value: null, disabled: true}, Validators.required),
-      'location': new FormControl(null, Validators.required),
-      'architect': new FormControl(null),
-      'openingDate': new FormControl(null, Validators.required),
-      'capacity': new FormControl(null, Validators.required),
+      'name': new FormControl(this.stadium ? this.stadium.name : null, Validators.required),
+      'sports': new FormControl(this.stadium ? Object.keys(this.stadium.sports) : null, Validators.required),
+      'leagues': new FormControl({value: (this.stadium ? Object.keys(this.stadium.leagues) : null), disabled: !this.stadium}, Validators.required),
+      'tenants': new FormControl({value: (this.stadium ? Object.keys(this.stadium.tenants) : null), disabled: !this.stadium}, Validators.required),
+      'location': new FormControl(this.stadium ? this.stadium.location : null, Validators.required),
+      'architect': new FormControl((this.stadium ? this.stadium.architect : null), null),
+      'openingDate': new FormControl(this.stadium ? this.stadium.openingDate : null, Validators.required),
+      'capacity': new FormControl(this.stadium ? this.stadium.capacity : null, Validators.required),
     });
+    if (this.stadium) {
+      this.handleSportsChoosed();
+      this.handleLeaguesChoosed();
+    }
   }
 
   cancel() {
@@ -105,18 +109,31 @@ export class EditStadiumPage implements OnInit {
   onSubmit() {
     this.submitTried = true;
     if (this.editStadiumForm.valid) {
-      const newStadium: Stadium = {
-        name: this.editStadiumForm.get('name').value,
-        sports: this.generateFireObject(this.editStadiumForm.get('sports').value),
-        leagues: this.generateFireObject(this.editStadiumForm.get('leagues').value),
-        tenants: this.generateFireObject(this.editStadiumForm.get('tenants').value),
-        capacity: this.editStadiumForm.get('capacity').value,
-        location: this.editStadiumForm.get('location').value,
-        openingDate: this.editStadiumForm.get('openingDate').value,
-        images: []
-      };
-      this.database.newStadium(newStadium).then(res => {
-        this.translate.get('STADIUM_ADDED', {stadium: newStadium.name}).subscribe((res: string) => {
+      if (this.stadium) {
+        this.editStadium();
+      } else {
+        this.createStadium();
+      }
+    }
+  }
+
+  editStadium() {
+    let updates = {};
+    for(let control in this.editStadiumForm.controls) {
+      if (this.editStadiumForm.get(control).dirty) {
+        const multiChildren = ['sports', 'leagues', 'tenants'];
+        if (multiChildren.indexOf(control) > -1 ) {
+          updates[control] = this.generateFireObject(this.editStadiumForm.get(control).value);
+        } else {
+          updates[control] = this.editStadiumForm.get(control).value;
+        }
+      }
+    }
+    if (Object.keys(updates).length === 0) {
+
+    } else {
+      this.database.updateStadium(this.stadium.$key, updates).then(res => {
+        this.translate.get('STADIUM_UPDATED', {stadium: this.editStadiumForm.get('name').value }).subscribe((res: string) => {
           let toast = this.toastCtrl.create({
             message: res,
             duration: 2000,
@@ -127,6 +144,31 @@ export class EditStadiumPage implements OnInit {
         })
       });
     }
+  }
+
+  createStadium() {
+    const newStadium: Stadium = {
+      name: this.editStadiumForm.get('name').value,
+      sports: this.generateFireObject(this.editStadiumForm.get('sports').value),
+      leagues: this.generateFireObject(this.editStadiumForm.get('leagues').value),
+      tenants: this.generateFireObject(this.editStadiumForm.get('tenants').value),
+      capacity: this.editStadiumForm.get('capacity').value,
+      location: this.editStadiumForm.get('location').value,
+      architect: this.editStadiumForm.get('architect').value ? this.editStadiumForm.get('architect').value : '',
+      openingDate: this.editStadiumForm.get('openingDate').value,
+      images: []
+    };
+    this.database.newStadium(newStadium).then(res => {
+      this.translate.get('STADIUM_ADDED', {stadium: newStadium.name}).subscribe((res: string) => {
+        let toast = this.toastCtrl.create({
+          message: res,
+          duration: 2000,
+          position: 'middle',
+        })
+        toast.present();
+        this.cancel();
+      })
+    });
   }
 
   generateFireObject(array) {

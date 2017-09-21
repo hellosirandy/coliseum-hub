@@ -4,7 +4,7 @@ export class Stadium  {
   leagues: any;
   tenants: any;
   location: string;
-  architect?: string;
+  architect: string;
   openingDate: string;
   capacity: number;
   images: string[];

@@ -5,6 +5,7 @@ import { EditStadiumPage } from './edit-stadium/edit-stadium';
 import { StadiumViewPage } from './stadium-view/stadium-view';
 import { TranslateModule } from '@ngx-translate/core';
 import { DirectivesModule } from '../directives/directives.module';
+import { ComponentsModule } from '../components/components.module';
 import { AuthService } from '../providers/auth.service';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AuthService } from '../providers/auth.service';
 		IonicPageModule.forChild(StadiumViewPage),
 		TranslateModule,
 		DirectivesModule,
+		ComponentsModule,
 	],
 	exports: [
     LeagueViewPage,

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[square]' // Attribute selector
@@ -15,4 +15,8 @@ export class SquareDirective implements OnInit {
     this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${width}px`);
   }
 
+  @HostListener('window:resize', ['$event']) windowresize(event) {
+    const width = this.elementRef.nativeElement.offsetWidth;
+    this.renderer.setStyle(this.elementRef.nativeElement, 'height', `${width}px`);
+  }
 }

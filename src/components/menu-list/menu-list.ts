@@ -37,6 +37,7 @@ export class MenuListComponent implements OnInit {
       }
     });
     this.database.getAllStadium().subscribe(stadiums => {
+      this.category = {};
       stadiums.forEach(stadium => {
         for (let league in stadium.leagues) {
           if (this.category[league]) {

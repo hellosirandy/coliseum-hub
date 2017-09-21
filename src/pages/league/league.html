@@ -9,5 +9,19 @@
 
 
 <ion-content padding>
-  {{title}}
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let stadium of stadiums">
+        <div class="stadium">
+          <div class="preview-image" square>
+
+          </div>
+          <div class="stadium-content">
+            <h3 class="stadium-name">{{stadium.name}}</h3>
+            <p class="stadium-location">{{stadium.location}}</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

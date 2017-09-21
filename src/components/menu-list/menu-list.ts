@@ -1,6 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MenuItem } from '../../models/menu-item';
 import { Sports, Leagues, Teams } from '../../statics/sports-leagues-teams';
+
+import { DatabaseService } from '../../providers/database.service';
+
+import { Stadium } from '../../models/stadium';
+
 @Component({
   selector: 'menu-list',
   templateUrl: 'menu-list.html'
@@ -10,8 +15,11 @@ export class MenuListComponent implements OnInit {
   menuList: MenuItem[]=[];
 
   focusSport: string;
+  category: any={}
 
-  constructor() {
+  constructor(
+    private database: DatabaseService,
+  ) {
 
   }
 
@@ -29,7 +37,18 @@ export class MenuListComponent implements OnInit {
           }
         }),
       }
-    })
+    });
+    this.database.getAllStadium().subscribe(stadiums => {
+      stadiums.forEach(stadium => {
+        for (let league in stadium.leagues) {
+          if (this.category[league]) {
+            this.category[league]++;
+          } else {
+            this.category[league] = 1;
+          }
+        }
+      });
+    });
   }
 
   handleSportClick(sport) {

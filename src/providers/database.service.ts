@@ -16,12 +16,16 @@ export class DatabaseService {
     return this.database.list('/stadiums').push(stadium);
   }
 
-  getLeagueStadium(league: string) {
-    return <FirebaseListObservable<Stadium[]>>this.database.list('/stadiums', {
+  getLeagueStadium(league: string):FirebaseListObservable<Stadium[]> {
+    return this.database.list('/stadiums', {
       query: {
         orderByChild: `leagues/${league}`,
         equalTo: true
       }
     });
+  }
+
+  getAllStadium():FirebaseListObservable<Stadium[]> {
+    return this.database.list('/stadiums');
   }
 }

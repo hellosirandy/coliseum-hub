@@ -9,6 +9,7 @@ import { Stadium } from '../../models/stadium';
 })
 export class LeaguePage {
   title: string='';
+  stadiums: Stadium[];
 
   constructor(
     private database: DatabaseService,
@@ -20,7 +21,7 @@ export class LeaguePage {
     const league = this.navParams.get('league');
     this.title = league;
     this.database.getLeagueStadium(league).subscribe((res: Stadium[]) => {
-      console.log(res);
+      this.stadiums = res;
     });
   }
 

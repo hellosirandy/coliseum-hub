@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { LeaguePage } from '../league/league';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
+
 import { AuthService } from '../../providers/auth.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { AuthService } from '../../providers/auth.service';
 })
 export class HomePage {
   user=null;
+  stadiums=[];
 
   constructor(
     private auth: AuthService,

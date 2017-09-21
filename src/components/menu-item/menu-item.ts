@@ -6,10 +6,11 @@ import { Component, Input } from '@angular/core';
 export class MenuItemComponent {
   @Input() thumbnail: string;
   @Input() title: string;
+  @Input() subtitle: number;
   @Input() collapse: boolean;
 
   constructor() {
-    
+
   }
 
 }

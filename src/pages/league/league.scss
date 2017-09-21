@@ -1,3 +1,33 @@
 page-league {
+  .stadium {
+    border: 1.2px solid #cdcdcd;
+    box-shadow: 2px 3px 5px #969696;
+    .preview-image {
+      width: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #8a6eb5;
+    }
+
+    .stadium-content {
+      background-color: #f6f4f4;
+      padding: 12px 6px;
+      .stadium-name {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-top: 0;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .stadium-location {
+        color: #999999;
+        margin: 0;
+      }
+    }
+  }
+
 
 }

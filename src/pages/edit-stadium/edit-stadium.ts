@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavParams, ToastController, ViewController } from 'ionic-angular';
+import { LoadingController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { Observable } from 'rxjs';
 
 import { StorageService } from '../../providers/storage.service';
 import { DatabaseService } from '../../providers/database.service';
@@ -25,15 +26,18 @@ export class EditStadiumPage implements OnInit {
   stadium: any=null;
 
   fileList: any[]=[];
-  previewImages: string[]=[];
+  previewImages = {old: [], new: []};
 
   sportsCandidates: Sport[]=Sports;
   leaguesCandidates: League[]=[];
   tenantsCandidates: Team[]=[];
 
+  imagesBuffer: any[]=[];
+
   constructor(
     private viewCtrl: ViewController,
     private database: DatabaseService,
+    private loadingCtrl: LoadingController,
     params: NavParams,
     private storage: StorageService,
     private toastCtrl: ToastController,
@@ -43,6 +47,7 @@ export class EditStadiumPage implements OnInit {
   }
 
   ngOnInit() {
+    this.previewImages.old = ((this.stadium && this.stadium.images) ? this.stadium.images : []);
     this.editStadiumForm = new FormGroup({
       'name': new FormControl(this.stadium ? this.stadium.name : null, Validators.required),
       'sports': new FormControl(this.stadium ? Object.keys(this.stadium.sports) : null, Validators.required),
@@ -52,6 +57,7 @@ export class EditStadiumPage implements OnInit {
       'architect': new FormControl((this.stadium ? this.stadium.architect : null), null),
       'openingDate': new FormControl(this.stadium ? this.stadium.openingDate : null, Validators.required),
       'capacity': new FormControl(this.stadium ? this.stadium.capacity : null, Validators.required),
+      'images': new FormControl(this.previewImages.old, null),
     });
     if (this.stadium) {
       this.handleSportsChoosed();
@@ -68,12 +74,13 @@ export class EditStadiumPage implements OnInit {
   }
 
   handleFileSelected(files) {
-    const offset = this.previewImages.length;
+    this.imagesBuffer = [...this.imagesBuffer, ...Array.from(files)];
+    const offset = this.previewImages.new.length;
     for (let i = 0; i < files.length; i++) {
       let reader = new FileReader();
       reader.readAsDataURL(files[i]);
       reader.onloadend = function (e) {
-        this.previewImages[offset+i] = reader.result;
+        this.previewImages.new[offset+i] = reader.result;
       }.bind(this);
     }
   }
@@ -109,65 +116,83 @@ export class EditStadiumPage implements OnInit {
   onSubmit() {
     this.submitTried = true;
     if (this.editStadiumForm.valid) {
-      if (this.stadium) {
-        this.editStadium();
-      } else {
-        this.createStadium();
-      }
-    }
-  }
-
-  editStadium() {
-    let updates = {};
-    for(let control in this.editStadiumForm.controls) {
-      if (this.editStadiumForm.get(control).dirty) {
-        const multiChildren = ['sports', 'leagues', 'tenants'];
-        if (multiChildren.indexOf(control) > -1 ) {
-          updates[control] = this.generateFireObject(this.editStadiumForm.get(control).value);
+      const stringArray = ['UPLOADING_IMAGE', 'SAVING_STADIUM', 'STADIUM_UPDATED', 'STADIUM_ADDED'];
+      this.translate.get(stringArray, {stadium: this.editStadiumForm.get('name').value}).toPromise().then((res: any) => {
+        if (this.stadium) {
+          this.editStadium(res);
         } else {
-          updates[control] = this.editStadiumForm.get(control).value;
+          this.createStadium(res);
         }
-      }
-    }
-    if (Object.keys(updates).length === 0) {
-
-    } else {
-      this.database.updateStadium(this.stadium.$key, updates).then(res => {
-        this.translate.get('STADIUM_UPDATED', {stadium: this.editStadiumForm.get('name').value }).subscribe((res: string) => {
-          let toast = this.toastCtrl.create({
-            message: res,
-            duration: 2000,
-            position: 'middle',
-          })
-          toast.present();
-          this.cancel();
-        })
       });
     }
   }
 
-  createStadium() {
-    const newStadium: Stadium = {
-      name: this.editStadiumForm.get('name').value,
-      sports: this.generateFireObject(this.editStadiumForm.get('sports').value),
-      leagues: this.generateFireObject(this.editStadiumForm.get('leagues').value),
-      tenants: this.generateFireObject(this.editStadiumForm.get('tenants').value),
-      capacity: this.editStadiumForm.get('capacity').value,
-      location: this.editStadiumForm.get('location').value,
-      architect: this.editStadiumForm.get('architect').value ? this.editStadiumForm.get('architect').value : '',
-      openingDate: this.editStadiumForm.get('openingDate').value,
-      images: []
-    };
-    this.database.newStadium(newStadium).then(res => {
-      this.translate.get('STADIUM_ADDED', {stadium: newStadium.name}).subscribe((res: string) => {
-        let toast = this.toastCtrl.create({
-          message: res,
-          duration: 2000,
-          position: 'middle',
-        })
-        toast.present();
-        this.cancel();
+  editStadium(translateValues: any) {
+    let loader;
+    loader = this.loadingCtrl.create({
+      content: translateValues.UPLOADING_IMAGE,
+    });
+    loader.present();
+    this.uploadImages().then(_ => {
+      loader.setContent(translateValues.SAVING_STADIUM);
+
+      let updates = {};
+      for(let control in this.editStadiumForm.controls) {
+        if (this.editStadiumForm.get(control).dirty) {
+          const multiChildren = ['sports', 'leagues', 'tenants'];
+          if (multiChildren.indexOf(control) > -1 ) {
+            updates[control] = this.generateFireObject(this.editStadiumForm.get(control).value);
+          } else {
+            updates[control] = this.editStadiumForm.get(control).value;
+          }
+        }
+      }
+      if (Object.keys(updates).length === 0) {
+
+      } else {
+        return this.database.updateStadium(this.stadium.$key, updates);
+      }
+    }).then(res => {
+      loader.dismiss();
+      let toast = this.toastCtrl.create({
+        message: translateValues.STADIUM_UPDATED,
+        duration: 2000,
+        position: 'middle',
       })
+      toast.present();
+      this.cancel();
+    });
+  }
+
+  createStadium(translateValues: any) {
+    let loader;
+    loader = this.loadingCtrl.create({
+      content: translateValues.UPLOADING_IMAGE,
+    });
+    loader.present();
+    this.uploadImages().then(_ => {
+      loader.setContent(translateValues.SAVING_STADIUM);
+      const newStadium: Stadium = {
+        name: this.editStadiumForm.get('name').value,
+        sports: this.generateFireObject(this.editStadiumForm.get('sports').value),
+        leagues: this.generateFireObject(this.editStadiumForm.get('leagues').value),
+        tenants: this.generateFireObject(this.editStadiumForm.get('tenants').value),
+        capacity: this.editStadiumForm.get('capacity').value,
+        location: this.editStadiumForm.get('location').value,
+        architect: this.editStadiumForm.get('architect').value ? this.editStadiumForm.get('architect').value : '',
+        openingDate: this.editStadiumForm.get('openingDate').value,
+        images: this.editStadiumForm.get('images').value
+      };
+      return this.database.newStadium(newStadium);
+    }).then(res => {
+      loader.dismiss();
+      let toast = this.toastCtrl.create({
+        message: translateValues.STADIUM_ADDED,
+        duration: 2000,
+        position: 'middle',
+      })
+      toast.present();
+      this.cancel();
     });
   }
 
@@ -177,6 +202,38 @@ export class EditStadiumPage implements OnInit {
       fire[value] = true;
     }
     return fire;
+  }
+
+  uploadImages():Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (this.imagesBuffer.length === 0) {
+        resolve();
+      }
+      Observable.forkJoin(
+        this.imagesBuffer.map(image =>
+          this.uploadSingleImage(image).then(url => url)
+        )
+      ).subscribe(urls => {
+        const images = this.editStadiumForm.get('images').value;
+        this.editStadiumForm.get('images').setValue([...images, ...urls]);
+        this.editStadiumForm.get('images').markAsDirty();
+        resolve();
+      });
+    })
+  }
+
+  uploadSingleImage(image):Promise<any> {
+    return new Promise((resolve, reject) => {
+      const task = this.storage.uploadFile(image);
+      task.on('state_changed',
+        null,
+        null,
+        () => {
+          resolve(task.snapshot.downloadURL);
+        }
+      );
+    })
+
   }
 
 }

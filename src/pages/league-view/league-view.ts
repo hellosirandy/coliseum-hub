@@ -30,7 +30,7 @@ export class LeagueViewPage {
   }
 
   handleStadiumTap(stadium) {
-    this.navCtrl.push(StadiumViewPage, { stadium: stadium });
+    this.navCtrl.push(StadiumViewPage, { stadium: stadium, stadiumKey: stadium.$key });
   }
 
 }

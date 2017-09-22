@@ -21,7 +21,7 @@ export const Leagues = {
     <League>{name: 'NBA', logo: 'assets/images/logos/nba.png'},
   ],
   hockey:<League[]> [
-    <League>{name: 'NHL', logo: 'assets/images/logos/nfl.png'},
+    <League>{name: 'NHL', logo: 'assets/images/logos/nhl.png'},
   ],
 };
 

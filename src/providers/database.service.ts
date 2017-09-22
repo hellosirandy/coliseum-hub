@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { Stadium } from '../models/stadium';
@@ -16,8 +16,12 @@ export class DatabaseService {
     return this.database.list('/stadiums').push(stadium);
   }
 
-  updateStadium(id: string, updates:any) {
-    return this.database.list('/stadiums').update(id, updates);
+  updateStadium(key: string, updates:any):firebase.Promise<any> {
+    return this.database.object(`/stadiums/${key}`).update(updates);
+  }
+
+  getStadium(key: string): FirebaseObjectObservable<Stadium> {
+    return this.database.object(`/stadiums/${key}`);
   }
 
   getLeagueStadium(league: string):FirebaseListObservable<Stadium[]> {

@@ -31,6 +31,14 @@ stadium-card {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      @media (max-width: $sm-screen) {
+        .stadium-name {
+          font-size: 1.4rem;
+        }
+        .stadium-location {
+          font-size: 1.1rem;
+        }
+      }
     }
   }
   .stadium:hover {

@@ -20,5 +20,7 @@
   "SIGN_OUT": "登出",
   "IS_REQUIRED": "是必填的",
   "STADIUM_ADDED": "您已新增 {{stadium}}",
-  "STADIUM_UPDATED": "您已更新 {{stadium}}"
+  "STADIUM_UPDATED": "您已更新 {{stadium}}",
+  "SAVING_STADIUM": "正在儲存 {{stadium}}...",
+  "UPLOADING_IMAGE": "正在上傳照片..."
 }

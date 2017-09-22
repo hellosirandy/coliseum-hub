@@ -36,10 +36,15 @@ page-edit-stadium {
       }
     }
     .img-cell {
-      border: dashed 1.5px #b5b5b5;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
+      &.old {
+        border: dashed 1.5px #b5b5b5;
+      }
+      &.new {
+        border: dashed 1.5px map-get($colors, secondary);
+      }
     }
   }
 

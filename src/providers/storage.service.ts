@@ -12,19 +12,10 @@ export class StorageService {
     this.storage = firebase.storage();
   }
 
-  uploadFile(file, progress, finish) {
+  uploadFile(file:File):firebase.storage.UploadTask {
     const d = new Date().getTime().toString();
     const filename = d + file.name;
     const ref = this.storage.ref('images/' + filename);
-    const task = ref.put(file);
-    task.on('state_changed',
-      progress,
-      (err) => {
-        console.log(err);
-      },
-      () => {
-        finish(task.snapshot)
-      }
-    )
+    return ref.put(file);
   }
 }

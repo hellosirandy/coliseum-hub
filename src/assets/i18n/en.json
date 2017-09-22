@@ -20,5 +20,7 @@
   "SIGN_OUT": "Sign out",
   "IS_REQUIRED": " is required",
   "STADIUM_ADDED": "You have added {{stadium}}",
-  "STADIUM_UPDATED": "You have updated {{stadium}}"
+  "STADIUM_UPDATED": "You have updated {{stadium}}",
+  "SAVING_STADIUM": "Saving {{stadium}}...",
+  "UPLOADING_IMAGE": "Uploading images..."
 }

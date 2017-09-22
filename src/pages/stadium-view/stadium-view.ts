@@ -4,6 +4,7 @@ import { Stadium } from '../../models/stadium';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
 
 import { AuthService } from '../../providers/auth.service';
+import { DatabaseService } from '../../providers/database.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -17,19 +18,24 @@ export class StadiumViewPage {
   user=null;
 
   userObs:Subscription;
+  stadiumObs: Subscription;
 
   constructor(
     private auth: AuthService,
+    private database: DatabaseService,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
-    navParams: NavParams
+    private navParams: NavParams
   ) {
-    this.stadium = navParams.get('stadium');
+    // this.stadium = navParams.get('stadium');
   }
 
   ionViewDidLoad() {
     this.userObs = this.auth.getAuthState().subscribe(user => {
       this.user = user;
+    });
+    this.stadiumObs = this.database.getStadium(this.navParams.get('stadiumKey')).subscribe(stadium => {
+      this.stadium = stadium;
     });
   }
 

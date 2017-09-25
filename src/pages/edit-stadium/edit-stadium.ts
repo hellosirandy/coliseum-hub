@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, NavParams, ToastController, ViewController } from 'ionic-angular';
-import { Observable } from 'rxjs';
 
 import { StorageService } from '../../providers/storage.service';
 import { DatabaseService } from '../../providers/database.service';
@@ -117,7 +116,7 @@ export class EditStadiumPage implements OnInit {
     this.submitTried = true;
     if (this.editStadiumForm.valid) {
       const stringArray = ['UPLOADING_IMAGE', 'SAVING_STADIUM', 'STADIUM_UPDATED', 'STADIUM_ADDED'];
-      this.translate.get(stringArray, {stadium: this.editStadiumForm.get('name').value}).toPromise().then((res: any) => {
+      this.translate.get(stringArray, {stadium: this.editStadiumForm.get('name').value}).subscribe((res: any) => {
         if (this.stadium) {
           this.editStadium(res);
         } else {
@@ -209,31 +208,13 @@ export class EditStadiumPage implements OnInit {
       if (this.imagesBuffer.length === 0) {
         resolve();
       }
-      Observable.forkJoin(
-        this.imagesBuffer.map(image =>
-          this.uploadSingleImage(image).then(url => url)
-        )
-      ).subscribe(urls => {
+      this.storage.uploadMultipleFiles(this.imagesBuffer).subscribe((urls: string[]) => {
         const images = this.editStadiumForm.get('images').value;
         this.editStadiumForm.get('images').setValue([...images, ...urls]);
         this.editStadiumForm.get('images').markAsDirty();
         resolve();
       });
     })
-  }
-
-  uploadSingleImage(image):Promise<any> {
-    return new Promise((resolve, reject) => {
-      const task = this.storage.uploadFile(image);
-      task.on('state_changed',
-        null,
-        null,
-        () => {
-          resolve(task.snapshot.downloadURL);
-        }
-      );
-    })
-
   }
 
 }

@@ -100,11 +100,11 @@
       <ion-item class="file-preview">
         <ion-grid>
           <ion-row>
-            <ion-col col-3 *ngFor="let img of previewImages.old">
-              <div square class="img-cell old" [style.backgroundImage]="'url('+img+')'">
+            <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.old">
+              <div square class="img-cell old" [style.backgroundImage]="'url('+imageService.getThumbnail(img, 'small')+')'">
               </div>
             </ion-col>
-            <ion-col col-3 *ngFor="let img of previewImages.new">
+            <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.new">
               <div square class="img-cell new" [style.backgroundImage]="'url('+img+')'">
               </div>
             </ion-col>

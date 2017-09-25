@@ -25,6 +25,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../providers/auth.service';
 import { StorageService } from '../providers/storage.service';
 import { DatabaseService } from '../providers/database.service';
+import { ImageService } from '../providers/image.service';
 
 import { FirebaseConfig } from '../environments/environment';
 
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(http: Http) {
     AuthService,
     StorageService,
     DatabaseService,
+    ImageService,
   ]
 })
 export class AppModule {}

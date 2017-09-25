@@ -11,8 +11,8 @@ exports.generateThumbnail = functions.storage.object()
     const bucket = gcs.bucket(fileBucket)
     const tempFilePath = `/tmp/${fileName}`
 
-    if (fileName.startsWith('thumb_')) {
-      console.log('Already a Thumbnail.')
+    if (fileName.startsWith('smallthumb_')) {
+      console.log('Already a Smallthumbnail.')
       return
     }
 
@@ -30,12 +30,21 @@ exports.generateThumbnail = functions.storage.object()
       destination: tempFilePath
     })
     .then(() => {
-      console.log('Image downloadedlocally to ', tempFilePath)
-      spawn('convert', [tempFilePath, '-thumbnail', '200x200', tempFilePath])
+      console.log('Image downloaded locally to ', tempFilePath)
+      if (fileName.startsWith('bigthumb_')) {
+        return spawn('convert', [tempFilePath, '-thumbnail', '200x200>', tempFilePath])
+      } else {
+        return spawn('convert', [tempFilePath, '-thumbnail', '600x600>', tempFilePath])
+      }
     })
     .then(() => {
-      console.log('Thumbnail created')
-      const thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1thumb_$2')
+      let thumbnailFilePath = ''
+      console.log(fileName)
+      if (fileName.startsWith('bigthumb_')) {
+        thumbnailFilePath = filePath.replace('bigthumb_', 'smallthumb_')
+      } else {
+        thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1bigthumb_$2')
+      }
       return bucket.upload(tempFilePath, {
         destination: thumbnailFilePath
       })

@@ -5,6 +5,7 @@ import { LoadingController, NavParams, ToastController, ViewController } from 'i
 import { StorageService } from '../../providers/storage.service';
 import { DatabaseService } from '../../providers/database.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ImageService } from '../../providers/image.service';
 
 import { Stadium } from '../../models/stadium';
 import { Sport } from '../../models/sport';
@@ -36,6 +37,7 @@ export class EditStadiumPage implements OnInit {
   constructor(
     private viewCtrl: ViewController,
     private database: DatabaseService,
+    private imageService: ImageService,
     private loadingCtrl: LoadingController,
     params: NavParams,
     private storage: StorageService,

@@ -6,9 +6,9 @@ export class ImageService {
 
   }
 
-  getThumbnail(url: string, type: "small" | "big"):string {
+  getThumbnail(url: string, size: 100 | 200 | 400 | 800):string {
     const offsetString = 'images%2F'
     const index = url.indexOf(offsetString) + offsetString.length
-    return url.slice(0, index) + type + 'thumb_' + url.slice(index)
+    return url.slice(0, index) + `thumb${size}_` + url.slice(index)
   }
 }

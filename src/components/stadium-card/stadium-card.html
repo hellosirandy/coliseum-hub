@@ -1,5 +1,7 @@
 <div class="stadium">
-  <div class="preview-image" golden>
+  <div class="preview-image" golden 
+    [style.backgroundImage]="stadium.images ? 'url('+imageService.getThumbnail(stadium.images[0], 400)+')' : null"
+  >
 
   </div>
   <div class="stadium-content">

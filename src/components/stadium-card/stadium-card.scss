@@ -6,10 +6,10 @@ stadium-card {
     cursor: pointer;
     .preview-image {
       width: 100%;
-      background-size: contain;
+      background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      background-color: #8a6eb5;
+      background-color: #F1EEEE;
     }
 
     .stadium-content {
@@ -31,14 +31,20 @@ stadium-card {
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      @media (max-width: $sm-screen) {
+      
+    }
+    @media (max-width: $sm-screen) {
+      .stadium-content {
+        padding: 8px 4px;
         .stadium-name {
-          font-size: 1.4rem;
+          font-size: 1.3rem;
+          margin-bottom: 4px;
         }
         .stadium-location {
-          font-size: 1.1rem;
+          font-size: 1rem;
         }
       }
+      
     }
   }
   .stadium:hover {

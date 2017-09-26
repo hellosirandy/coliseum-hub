@@ -11,8 +11,13 @@ exports.generateThumbnail = functions.storage.object()
     const bucket = gcs.bucket(fileBucket)
     const tempFilePath = `/tmp/${fileName}`
 
-    if (fileName.startsWith('smallthumb_')) {
-      console.log('Already a Smallthumbnail.')
+    const temp100FilePath = `/tmp/100${fileName}`
+    const temp200FilePath = `/tmp/200${fileName}`
+    const temp400FilePath = `/tmp/400${fileName}`
+    const temp800FilePath = `/tmp/800${fileName}`
+
+    if (fileName.startsWith('thumb')) {
+      console.log('Already a thumbnail.')
       return
     }
 
@@ -30,22 +35,38 @@ exports.generateThumbnail = functions.storage.object()
       destination: tempFilePath
     })
     .then(() => {
-      console.log('Image downloaded locally to ', tempFilePath)
-      if (fileName.startsWith('bigthumb_')) {
-        return spawn('convert', [tempFilePath, '-thumbnail', '200x200>', tempFilePath])
-      } else {
-        return spawn('convert', [tempFilePath, '-thumbnail', '600x600>', tempFilePath])
-      }
+      return spawn('convert', [tempFilePath, '-thumbnail', '100>', temp100FilePath])
     })
     .then(() => {
-      let thumbnailFilePath = ''
-      console.log(fileName)
-      if (fileName.startsWith('bigthumb_')) {
-        thumbnailFilePath = filePath.replace('bigthumb_', 'smallthumb_')
-      } else {
-        thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1bigthumb_$2')
-      }
-      return bucket.upload(tempFilePath, {
+      return spawn('convert', [tempFilePath, '-thumbnail', '200>', temp200FilePath])
+    })
+    .then(() => {
+      return spawn('convert', [tempFilePath, '-thumbnail', '400>', temp400FilePath])
+    })
+    .then(() => {
+      return spawn('convert', [tempFilePath, '-thumbnail', '800>', temp800FilePath])
+    })
+    .then(() => {
+      const thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1thumb100_$2')
+      return bucket.upload(temp100FilePath, {
+        destination: thumbnailFilePath
+      })
+    })
+    .then(() => {
+      const thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1thumb200_$2')
+      return bucket.upload(temp200FilePath, {
+        destination: thumbnailFilePath
+      })
+    })
+    .then(() => {
+      const thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1thumb400_$2')
+      return bucket.upload(temp400FilePath, {
+        destination: thumbnailFilePath
+      })
+    })
+    .then(() => {
+      const thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1thumb800_$2')
+      return bucket.upload(temp800FilePath, {
         destination: thumbnailFilePath
       })
     })

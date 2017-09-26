@@ -2,7 +2,7 @@
   <ion-thumbnail item-start>
     <img src={{thumbnail}} alt="">
   </ion-thumbnail>
-  <h3>{{title}}</h3>
+  <h3>{{title.replace('_', ' ')}}</h3>
   <p *ngIf="subtitle !== undefined">{{subtitle}} {{ subtitle > 1 ? 'stadiums' : 'stadium' }}</p>
   <button *ngIf="collapse" ion-button icon-only clear item-end>
     <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>

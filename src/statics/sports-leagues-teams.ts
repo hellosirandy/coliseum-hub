@@ -16,6 +16,7 @@ export const Leagues = {
   ],
   football:<League[]> [
     <League>{name: 'NFL', logo: 'assets/images/logos/nfl.png'},
+    <League>{name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
   ],
   basketball:<League[]> [
     <League>{name: 'NBA', logo: 'assets/images/logos/nba.png'},
@@ -169,5 +170,27 @@ export const Teams = {
     <Team>{name: 'Sharks', logo: '', location: 'San Jose'},
     <Team>{name: 'Canucks', logo: '', location: 'Vancouver'},
     <Team>{name: 'Golden Knights', logo: '', location: 'Vegas'},
+  ],
+  Premier_League: <Team[]> [
+    <Team>{name: 'AFC Bournemouth', logo: '', location: ''},
+    <Team>{name: 'Arsenal', logo: '', location: ''},
+    <Team>{name: 'Brighton & Hove Albion	', logo: '', location: ''},
+    <Team>{name: 'Burnley', logo: '', location: ''},
+    <Team>{name: 'Chelsea', logo: '', location: ''},
+    <Team>{name: 'Crystal Palace', logo: '', location: ''},
+    <Team>{name: 'Everton', logo: '', location: ''},
+    <Team>{name: 'Huddersfield Town', logo: '', location: ''},
+    <Team>{name: 'Leicester City', logo: '', location: ''},
+    <Team>{name: 'Liverpool', logo: '', location: ''},
+    <Team>{name: 'Manchester City', logo: '', location: ''},
+    <Team>{name: 'Manchester United', logo: '', location: ''},
+    <Team>{name: 'Newcastle United', logo: '', location: ''},
+    <Team>{name: 'Southampton', logo: '', location: ''},
+    <Team>{name: 'Stoke City', logo: '', location: ''},
+    <Team>{name: 'Swansea City', logo: '', location: ''},
+    <Team>{name: 'Tottenham Hotspur', logo: '', location: ''},
+    <Team>{name: 'Watford', logo: '', location: ''},
+    <Team>{name: 'West Bromwich Albion', logo: '', location: ''},
+    <Team>{name: 'West Ham United', logo: '', location: ''},
   ]
 }

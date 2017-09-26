@@ -40,7 +40,7 @@
         <ion-label color="primary" floating>{{ 'LEAGUE' | translate }}</ion-label>
         <ion-select multiple="true" formControlName="leagues" (ionChange)="handleLeaguesChoosed()">
           <ion-option *ngFor="let league of leaguesCandidates" value={{league.name}}>
-            {{league.name}}
+            {{league.name.replace('_', ' ')}}
           </ion-option>
         </ion-select>
       </ion-item>
@@ -74,7 +74,7 @@
       </ion-item>
       <ion-item>
         <ion-label color="primary" floating>{{ 'OPENING_DATE' | translate }}</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="openingDate"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="openingDate" min="1800"></ion-datetime>
       </ion-item>
       <span class="form-errors"
         *ngIf="editStadiumForm.get('openingDate').invalid && submitTried">
@@ -101,7 +101,7 @@
         <ion-grid>
           <ion-row>
             <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.old">
-              <div square class="img-cell old" [style.backgroundImage]="'url('+imageService.getThumbnail(img, 'small')+')'">
+              <div square class="img-cell old" [style.backgroundImage]="'url('+imageService.getThumbnail(img, 200)+')'">
               </div>
             </ion-col>
             <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.new">

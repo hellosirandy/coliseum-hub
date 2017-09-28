@@ -101,7 +101,7 @@
         <ion-grid>
           <ion-row>
             <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.old">
-              <div square class="img-cell old" [style.backgroundImage]="'url('+imageService.getThumbnail(img, 200)+')'">
+              <div square class="img-cell old" [style.backgroundImage]="'url('+getThumbnail(img, 200)+')'">
               </div>
             </ion-col>
             <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.new">

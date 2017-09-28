@@ -18,4 +18,21 @@ export class StadiumCardComponent {
 
   }
 
+  getBackgroundImage(images) {
+    if (images) {
+      return this.imageService.getThumbnail(images[0], 400)
+    } else {
+      return null;
+    }
+  }
+
+  imgError(image) {
+    console.log('image error');
+    // image.onerror = null;
+    // setTimeout(function (){
+    //   let img = new Image();
+    //   img.src = image.src;
+    //  }, 1000);
+  }
+
 }

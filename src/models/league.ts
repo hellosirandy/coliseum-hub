@@ -1,4 +1,10 @@
+import { Sport } from './sport'
+
 export class League {
-  name: string;
-  logo: string;
+  
+  constructor(
+    public sport: Sport,
+    public name: string,
+    public logo: string
+  ) {}
 }

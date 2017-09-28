@@ -13,13 +13,6 @@ export class StorageService {
     this.storage = firebase.storage();
   }
 
-  uploadFile(file:File):firebase.storage.UploadTask {
-    const d = new Date().getTime().toString();
-    const filename = d + file.name;
-    const ref = this.storage.ref('images/' + filename);
-    return ref.put(file);
-  }
-
   uploadSingleFile(file: File):Observable<string> {
     const d = new Date().getTime().toString();
     const filename = d + file.name;

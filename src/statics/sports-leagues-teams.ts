@@ -2,29 +2,23 @@ import { Sport } from '../models/sport';
 import { League } from '../models/league';
 import { Team } from '../models/team';
 
+const baseball:Sport = <Sport>{name: 'baseball', logo: 'assets/images/baseball.png'}
+const football:Sport = <Sport>{name: 'football', logo: 'assets/images/football.png'}
+const basketball:Sport = <Sport>{name: 'basketball', logo: 'assets/images/basketball.png'}
+const hockey:Sport = <Sport>{name: 'hockey', logo: 'assets/images/hockey.png'}
+
 export const Sports:Sport[] = [
-  <Sport>{name: 'baseball', logo: 'assets/images/baseball.png'},
-  <Sport>{name: 'football', logo: 'assets/images/football.png'},
-  <Sport>{name: 'basketball', logo: 'assets/images/basketball.png'},
-  <Sport>{name: 'hockey', logo: 'assets/images/hockey.png'},
+  baseball, football, basketball, hockey
 ]
 
-export const Leagues = {
-  baseball:<League[]> [
-    <League>{name: 'MLB', logo: 'assets/images/logos/mlb.png'},
-    <League>{name: 'NPB', logo: 'assets/images/logos/npb.png'},
-  ],
-  football:<League[]> [
-    <League>{name: 'NFL', logo: 'assets/images/logos/nfl.png'},
-    <League>{name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
-  ],
-  basketball:<League[]> [
-    <League>{name: 'NBA', logo: 'assets/images/logos/nba.png'},
-  ],
-  hockey:<League[]> [
-    <League>{name: 'NHL', logo: 'assets/images/logos/nhl.png'},
-  ],
-};
+export const Leagues = [
+  <League>{sport: baseball,name: 'MLB', logo: 'assets/images/logos/mlb.png'},
+  <League>{sport: baseball, name: 'NPB', logo: 'assets/images/logos/npb.png'},
+  <League>{sport: football, name: 'NFL', logo: 'assets/images/logos/nfl.png'},
+  <League>{sport: football, name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
+  <League>{sport: basketball, name: 'NBA', logo: 'assets/images/logos/nba.png'},
+  <League>{sport: hockey, name: 'NHL', logo: 'assets/images/logos/nhl.png'},
+];
 
 export const Teams = {
   MLB:<Team[]> [

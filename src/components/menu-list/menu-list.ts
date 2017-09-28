@@ -26,7 +26,7 @@ export class MenuListComponent implements OnInit {
       return <MenuItem>{
         title: sport.name,
         thumbnail: sport.logo,
-        collapse: Leagues[sport.name].map(league => {
+        collapse: Leagues.filter(league => {return league.sport.name === sport.name}).map(league => {
           const logo = league.logo.split('.');
           return <MenuItem>{
             title: league.name,

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ModalController, NavParams } from 'ionic-angular';
 import { Stadium } from '../../models/stadium';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
 
 import { AuthService } from '../../providers/auth.service';
 import { DatabaseService } from '../../providers/database.service';
 
-import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -24,7 +23,6 @@ export class StadiumViewPage {
     private auth: AuthService,
     private database: DatabaseService,
     private modalCtrl: ModalController,
-    private navCtrl: NavController,
     private navParams: NavParams
   ) {
     // this.stadium = navParams.get('stadium');
@@ -44,7 +42,7 @@ export class StadiumViewPage {
   }
 
   handleEditClick() {
-    let modal = this.modalCtrl.create(EditStadiumPage, { create: false, stadium: this.stadium });
+    let modal = this.modalCtrl.create(EditStadiumPage, { stadium: this.stadium });
     modal.present();
   }
 

@@ -1,4 +1,4 @@
-import { Directive, DoCheck, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, DoCheck, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[golden]' // Attribute selector

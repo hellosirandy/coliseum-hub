@@ -35,18 +35,22 @@ exports.generateThumbnail = functions.storage.object()
       destination: tempFilePath
     })
     .then(() => {
-      return spawn('convert', [tempFilePath, '-thumbnail', '100>', temp100FilePath])
-    })
-    .then(() => {
-      return spawn('convert', [tempFilePath, '-thumbnail', '200>', temp200FilePath])
-    })
-    .then(() => {
-      return spawn('convert', [tempFilePath, '-thumbnail', '400>', temp400FilePath])
-    })
-    .then(() => {
       return spawn('convert', [tempFilePath, '-thumbnail', '800>', temp800FilePath])
     })
     .then(() => {
+      console.log("800 thumbnail generated")
+      return spawn('convert', [temp800FilePath, '-thumbnail', '400>', temp400FilePath])
+    })
+    .then(() => {
+      console.log("400 thumbnail generated")
+      return spawn('convert', [temp400FilePath, '-thumbnail', '200>', temp200FilePath])
+    })
+    .then(() => {
+      console.log("200 thumbnail generated")
+      return spawn('convert', [temp200FilePath, '-thumbnail', '100>', temp100FilePath])
+    })
+    .then(() => {
+      console.log("100 thumbnail generated")
       const thumbnailFilePath = filePath.replace(/(\/)?([^\/]*)$/, '$1thumb100_$2')
       return bucket.upload(temp100FilePath, {
         destination: thumbnailFilePath

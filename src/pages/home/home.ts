@@ -5,6 +5,8 @@ import { EditStadiumPage } from '../edit-stadium/edit-stadium';
 
 import { AuthService } from '../../providers/auth.service';
 
+import { Leagues } from '../../statics/sports-leagues-teams'
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -27,8 +29,9 @@ export class HomePage {
     });
   }
 
-  leagueChoosed(sport) {
-    this.navCtrl.push(LeagueViewPage, { league: sport });
+  leagueChoosed(leagueName) {
+    const league = Leagues.filter( league => league.name === leagueName )[0]
+    this.navCtrl.push(LeagueViewPage, { league: league });
   }
 
   handleAddClick() {

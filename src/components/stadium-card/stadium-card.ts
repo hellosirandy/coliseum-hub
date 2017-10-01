@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Stadium } from '../../models/stadium';
 
@@ -8,31 +8,29 @@ import { ImageService } from '../../providers/image.service';
   selector: 'stadium-card',
   templateUrl: 'stadium-card.html'
 })
-export class StadiumCardComponent {
+export class StadiumCardComponent implements OnInit {
   @Input() stadium:Stadium=null;
-  
+  imageUrl: string=null
 
   constructor(
     private imageService: ImageService,
   ) {
-
   }
 
-  getBackgroundImage(images) {
+  ngOnInit() {
+    this.imageUrl = this.stadium.images ? this.imageService.getThumbnail(this.stadium.images[0], 400) : null
+  }
+
+  getThumbnail(images) {
     if (images) {
       return this.imageService.getThumbnail(images[0], 400)
     } else {
-      return null;
+      return null
     }
   }
 
-  imgError(image) {
-    console.log('image error');
-    // image.onerror = null;
-    // setTimeout(function (){
-    //   let img = new Image();
-    //   img.src = image.src;
-    //  }, 1000);
+  imgError() {
+    this.imageUrl = this.stadium.images[0]
   }
 
 }

@@ -10,6 +10,11 @@ stadium-card {
       background-repeat: no-repeat;
       background-position: center;
       background-color: #F1EEEE;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .stadium-content {

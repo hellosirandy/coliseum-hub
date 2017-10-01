@@ -1,9 +1,7 @@
 <div class="stadium">
   <div class="preview-image" golden 
-    [style.backgroundImage]="stadium.images ? 'url('+getBackgroundImage(stadium.images)+')' : null"
-    (error)="imgError(this)"
   >
-
+    <img *ngIf="stadium.images" [src]="imageUrl" alt="" (error)="imgError()">
   </div>
   <div class="stadium-content">
     <h3 class="stadium-name">{{stadium.name}}</h3>

@@ -94,6 +94,7 @@ export const Teams = {
     <Team>{name: 'Jets', logo: '', location: 'New York'},
     <Team>{name: 'Raiders', logo: '', location: 'Oakland'},
     <Team>{name: 'Steelers', logo: '', location: 'Pittsburgh'},
+    <Team>{name: 'Eagles', logo: '', location: 'Philadelphia'},
     <Team>{name: '49ers', logo: '', location: 'San Francisco'},
     <Team>{name: 'Seahawks', logo: '', location: 'Seattle'},
     <Team>{name: 'Buccaneers', logo: '', location: 'Tampa Bay'},

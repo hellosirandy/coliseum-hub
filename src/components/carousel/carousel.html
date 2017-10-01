@@ -1,0 +1,9 @@
+<ion-slides *ngIf="content.length > 0" square
+  autoplay="4000" 
+  pager 
+  loop
+  speed="900">
+  <ion-slide *ngFor="let stadium of content">
+    <img [src]="stadium.images[0]" alt="">
+  </ion-slide>
+</ion-slides>

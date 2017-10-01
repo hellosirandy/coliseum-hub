@@ -1,0 +1,12 @@
+carousel {
+  ion-slide {
+    .slide-zoom {
+      height: 80%;
+    }
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+  }
+}

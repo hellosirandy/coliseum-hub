@@ -8,12 +8,23 @@
 </ion-header>
 
 <ion-menu type="overlay" [content]="mycontent" persistent="true">
+  <ion-header>
+    <ion-toolbar color="lighter">
+      <ion-title>Categories</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-content>
     <menu-list (leagueChoosed)="leagueChoosed($event)"></menu-list>
   </ion-content>
 </ion-menu>
 
 <ion-content padding>
+  <ion-slides autoplay="2000" *ngIf="mlbStadiums.length > 0" pager>
+    <ion-slide *ngFor="let stadium of mlbStadiums">
+      <!-- <h1>123</h1> -->
+      <img [src]="stadium.images[0]" alt="">
+    </ion-slide>
+  </ion-slides>
   <ion-fab *ngIf="user">
     <button ion-fab (click)="handleAddClick()"><ion-icon name="md-add"></ion-icon></button>
   </ion-fab>

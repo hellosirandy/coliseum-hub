@@ -20,9 +20,9 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
-      <ion-col col-12 col-sm-6>
-        <carousel [content]="mlbStadiums"></carousel>
+    <ion-row justify-content-around>
+      <ion-col col-12 col-sm-5 *ngFor="let league of carouselsName">
+        <carousel [content]="carousels[league.name]" [league]="league"></carousel>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -1,12 +1,37 @@
 carousel {
-  ion-slide {
-    .slide-zoom {
-      height: 80%;
+  h3.title {
+    font-size: 3.1rem;
+    line-height: 3.5rem;
+    align-items: center;
+    @media (max-width: $md-screen) {
+      font-size: 2.7rem;
     }
-    img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
+    .league-icon {
+      height: 30px;
+      height: 30px;
     }
   }
+  ion-slides {
+    box-shadow: 0 0 10px #9D9D9D;
+    ion-slide {
+      background-color: #F1F1F1;
+      align-items: unset !important;
+      .slide-zoom {
+        text-align: left;
+        margin-bottom: 70px;
+      }
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+      .content {
+        padding: 7px;
+        h3 {
+          margin: 0;
+        }
+      }
+    }
+  }
+  
 }

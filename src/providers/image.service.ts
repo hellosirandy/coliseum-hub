@@ -12,4 +12,9 @@ export class ImageService {
     const thumbnailUrl = url.slice(0, index) + `thumb${size}_` + url.slice(index)
     return thumbnailUrl
   }
+
+  getLeagueIcon(url): string {
+    const logo = url.split('.')
+    return `${logo[0]}-64.${logo[1]}`
+  }
 }

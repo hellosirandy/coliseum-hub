@@ -1,9 +1,19 @@
-<ion-slides *ngIf="content.length > 0" square
-  autoplay="4000" 
+
+<h3 class="title">
+  <!-- <img [src]="getLeagueIcon(league.logo)" alt="" class="league-icon"> -->
+  {{league.name.replace('_', ' ')}}
+</h3>
+<ion-spinner *ngIf="content.length === 0"  name="bubbles"></ion-spinner>
+<ion-slides *ngIf="content.length > 0" 
+  golden
   pager 
   loop
-  speed="900">
+  speed="900"
+  paginationType="bullets">
   <ion-slide *ngFor="let stadium of content">
-    <img [src]="stadium.images[0]" alt="">
+    <img [src]="getSliderImage(stadium.images[0])" alt="">
+    <div class="content">
+      <h3>{{stadium.name}}</h3>
+    </div>
   </ion-slide>
 </ion-slides>

@@ -8,11 +8,51 @@
 
   <ion-navbar>
     <ion-title>{{ 'SEARCH' | translate}}</ion-title>
+    <ion-searchbar
+      showCancelButton
+      (ionInput)="handleSearchInput($event.target.value)"
+      [(ngModel)]="searchInput">
+    </ion-searchbar>
   </ion-navbar>
+  <ion-toolbar *ngIf="mobile">
+    <ion-segment [(ngModel)]="searchType" color="primary" (ngModelChange)="handleSearchTypeChange($event)">
+        <ion-segment-button value="name">
+          {{ 'NAME' | translate }}
+        </ion-segment-button>
+        <ion-segment-button value="location">
+          {{ 'LOCATION' | translate }}
+        </ion-segment-button>
+        <ion-segment-button value="architect">
+          {{ 'ARCHITECT' | translate }}
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-segment *ngIf="!mobile"
+    [(ngModel)]="searchType" 
+    color="primary" 
+    (ngModelChange)="handleSearchTypeChange($event)">
+    <ion-segment-button value="name">
+      {{ 'NAME' | translate }}
+    </ion-segment-button>
+    <ion-segment-button value="location">
+      {{ 'LOCATION' | translate }}
+    </ion-segment-button>
+    <ion-segment-button value="architect">
+      {{ 'ARCHITECT' | translate }}
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (tap)="handleStadiumTapped(item)">
+      <ion-thumbnail item-start>
+        <img [src]="getThumbnail(item.images)" alt="">
+      </ion-thumbnail>
+      <h3>{{ item.name }}</h3>
+      <p *ngIf="searchType !== 'name'">{{item[searchType]}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

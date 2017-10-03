@@ -57,7 +57,6 @@ export class HomePage {
 
   handleStadiumTapped(stadium) {
     this.navCtrl.push(StadiumViewPage, { stadium: stadium, stadiumKey: stadium.$key })
-    
   }
 
 }

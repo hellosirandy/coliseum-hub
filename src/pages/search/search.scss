@@ -1,3 +1,14 @@
 page-search {
-
+  ion-title {
+    display: none;
+  }
+  ion-item {
+    ion-thumbnail {
+      img {
+        object-fit: cover;
+        // width: 30px !important;
+        // height: 30px !important;
+      }
+    }
+  }
 }

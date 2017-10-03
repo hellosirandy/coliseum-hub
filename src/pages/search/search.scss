@@ -3,12 +3,14 @@ page-search {
     display: none;
   }
   ion-item {
+    cursor: pointer;
     ion-thumbnail {
       img {
         object-fit: cover;
-        // width: 30px !important;
-        // height: 30px !important;
       }
     }
+  }
+  ion-item:hover {
+    background-color: #f2f2f2;
   }
 }

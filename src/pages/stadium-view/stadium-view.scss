@@ -1,3 +1,15 @@
 page-stadium-view {
-  
+  ion-content {
+    ion-col {
+      div.cell {
+        background-color: #F1F0F0;
+        display: flex;
+        align-items: center;
+        img {
+          width: auto;
+          height: auto;
+        }
+      }
+    }
+  }
 }

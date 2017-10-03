@@ -8,6 +8,18 @@
 
 
 <ion-content padding>
+  <div *ngIf="stadium">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3 *ngFor="let image of stadium.images">
+          <div class="cell" square>
+            <img [src]="image" alt="">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
   <ion-fab *ngIf="user">
     <button ion-fab (click)="handleEditClick()"><ion-icon name="md-create"></ion-icon></button>
   </ion-fab>

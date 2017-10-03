@@ -1,4 +1,7 @@
 carousel {
+  ion-spinner {
+    width: 100%;
+  }
   h3.title {
     font-size: 3.1rem;
     line-height: 3.5rem;
@@ -22,6 +25,9 @@ carousel {
         @media (max-width: $lg-screen) {
           margin-bottom: 70px;
         }
+        @media (max-width: $sm-screen) {
+          margin-bottom: 55px;
+        }
       }
       img {
         width: 100% !important;
@@ -29,19 +35,25 @@ carousel {
         object-fit: cover !important;
       }
       .stadium-content {
+        text-align: center;
         @media (min-width: $lg-screen) {
           display: none;
         }
         padding: 7px;
+        @media (max-width: $sm-screen) {
+          padding: 0px 7px;
+        }
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         span.name {
           font-size: 2.2rem;
           font-weight: bold;
         }
-        span.location {
-          font-size: 1.6rem;
-          font-weight: 500;
-          color: #727272;
-          float: right;
+        @media (max-width: $sm-screen) {
+          span.name {
+            font-size: 1.7rem;
+          }
         }
       }
     }

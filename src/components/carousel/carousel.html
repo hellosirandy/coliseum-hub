@@ -7,7 +7,6 @@
           golden
           pager 
           loop
-          autoplay="4000"
           speed="900"
           paginationType="bullets"
           (ionSlideDidChange)="handleSlideChanged()">
@@ -15,7 +14,6 @@
             <img [src]="getSliderImage(stadium.images[0])" alt="">
             <div class="stadium-content">
               <span class="name">{{stadium.name}}</span>
-              <span class="location">{{stadium.location}}</span>
             </div>
           </ion-slide>
         </ion-slides>

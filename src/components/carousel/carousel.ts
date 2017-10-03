@@ -1,25 +1,24 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
+import { Component, Input, ViewChild } from '@angular/core'
+import { Slides } from 'ionic-angular';
 
 import { Stadium } from '../../models/stadium'
 
 import { ImageService } from '../../providers/image.service'
-import { League } from '../../models/league'
 
 @Component({
   selector: 'carousel',
   templateUrl: 'carousel.html'
 })
-export class CarouselComponent implements OnChanges {
+export class CarouselComponent {
+  @ViewChild(Slides) slides: Slides
   @Input() content: Stadium[]
+
+  currentStadium: Stadium;
 
   constructor(
     private imageService: ImageService
   ) {
     
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
   }
 
   getSliderImage(url: string) {
@@ -28,6 +27,14 @@ export class CarouselComponent implements OnChanges {
 
   getLeagueIcon(url: string) {
     return this.imageService.getLeagueIcon(url)
+  }
+
+  handleSlideChanged() {
+    let currentIndex = this.slides.getActiveIndex()-1
+    if (currentIndex == this.content.length) {
+      currentIndex = 0
+    }
+    this.currentStadium = this.content[currentIndex]
   }
 
 }

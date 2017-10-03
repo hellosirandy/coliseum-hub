@@ -9,7 +9,8 @@
           loop
           autoplay="4000"
           speed="900"
-          paginationType="bullets">
+          paginationType="bullets"
+          (ionSlideDidChange)="handleSlideChanged()">
           <ion-slide *ngFor="let stadium of content">
             <img [src]="getSliderImage(stadium.images[0])" alt="">
             <!-- <div class="content">
@@ -21,8 +22,33 @@
       </ion-col>
       <ion-col col-4 [style.height]="'inherit'">
         <div class="stadium-content">
-          <h3 class="name">Barclays Center</h3>
-          <h3 class="location">Brooklyn, New York</h3>
+          <div *ngIf="currentStadium">
+            <h3 class="name">{{currentStadium.name}}</h3>
+            <ion-row>
+              <ion-col col-4>
+                <h3 class="category-header">Location</h3>
+              </ion-col>
+              <ion-col col-8>
+                <h3 class="category-content">{{currentStadium.location}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                <h3 class="category-header">Architect</h3>
+              </ion-col>
+              <ion-col col-8>
+                <h3 class="category-content">{{currentStadium.architect}}</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                <h3 class="category-header">Opened</h3>
+              </ion-col>
+              <ion-col col-8>
+                <h3 class="category-content">{{currentStadium.openingDate}}</h3>
+              </ion-col>
+            </ion-row>
+          </div>
         </div>
       </ion-col>
     </ion-row>

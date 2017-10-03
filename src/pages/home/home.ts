@@ -8,7 +8,6 @@ import { DatabaseService } from '../../providers/database.service';
 
 import { Leagues } from '../../statics/sports-leagues-teams'
 import { Stadium } from '../../models/stadium'
-import { League } from '../../models/league'
 
 import * as shuffle from 'shuffle-array'
 

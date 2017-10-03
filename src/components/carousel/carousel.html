@@ -2,7 +2,7 @@
 <div *ngIf="content.length > 0">
   <ion-grid>
     <ion-row>
-      <ion-col col-12 col-md-8>
+      <ion-col col-12 col-lg-8>
         <ion-slides 
           golden
           pager 
@@ -13,39 +13,23 @@
           (ionSlideDidChange)="handleSlideChanged()">
           <ion-slide *ngFor="let stadium of content">
             <img [src]="getSliderImage(stadium.images[0])" alt="">
-            <!-- <div class="content">
-              <h3>{{stadium.name}}</h3>
-              <h3>{{stadium.location}}</h3>
-            </div> -->
+            <div class="stadium-content">
+              <span class="name">{{stadium.name}}</span>
+              <span class="location">{{stadium.location}}</span>
+            </div>
           </ion-slide>
         </ion-slides>
       </ion-col>
-      <ion-col col-4 [style.height]="'inherit'">
-        <div class="stadium-content">
+      <ion-col col-4 [style.height]="'inherit'" class="carousel-right-bar">
+        <div class="stadium-lg-content">
           <div *ngIf="currentStadium">
             <h3 class="name">{{currentStadium.name}}</h3>
-            <ion-row>
+            <ion-row *ngFor="let property of currentStadium.properties">
               <ion-col col-4>
-                <h3 class="category-header">Location</h3>
+                <h3 class="category-header">{{property.title}}</h3>
               </ion-col>
               <ion-col col-8>
-                <h3 class="category-content">{{currentStadium.location}}</h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-4>
-                <h3 class="category-header">Architect</h3>
-              </ion-col>
-              <ion-col col-8>
-                <h3 class="category-content">{{currentStadium.architect}}</h3>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-4>
-                <h3 class="category-header">Opened</h3>
-              </ion-col>
-              <ion-col col-8>
-                <h3 class="category-content">{{currentStadium.openingDate}}</h3>
+                <h3 class="category-content">{{property.content}}</h3>
               </ion-col>
             </ion-row>
           </div>

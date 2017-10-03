@@ -19,13 +19,15 @@
 </ion-menu>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row justify-content-around>
-      <ion-col col-12 col-sm-5 *ngFor="let league of carouselsName">
-        <carousel [content]="carousels[league.name]" [league]="league"></carousel>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <carousel [content]="carousels"></carousel>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <ion-fab *ngIf="user">
     <button ion-fab (click)="handleAddClick()"><ion-icon name="md-add"></ion-icon></button>
   </ion-fab>

@@ -12,13 +12,14 @@ carousel {
     }
   }
   ion-slides {
+    background-color: #F1F1F1;
     box-shadow: 0 0 10px #9D9D9D;
     ion-slide {
-      background-color: #F1F1F1;
       align-items: unset !important;
       .slide-zoom {
         text-align: left;
-        margin-bottom: 70px;
+        // margin-bottom: 70px;
+        margin-bottom: 40px;
       }
       img {
         width: 100% !important;
@@ -33,5 +34,18 @@ carousel {
       }
     }
   }
-  
+  .stadium-content {
+    box-shadow: 0 0 10px #9D9D9D;
+    background-color: #F1F1F1;
+    height: 100%;
+    padding: 20px;
+    h3.name {
+      text-align: center;
+      font-size: 2.6rem;
+    }
+    h3.location {
+      font-size: 1.9rem;
+      font-weight: 400;
+    }
+  }
 }

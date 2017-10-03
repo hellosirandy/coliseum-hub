@@ -1,19 +1,31 @@
-
-<h3 class="title">
-  <!-- <img [src]="getLeagueIcon(league.logo)" alt="" class="league-icon"> -->
-  {{league.name.replace('_', ' ')}}
-</h3>
 <ion-spinner *ngIf="content.length === 0"  name="bubbles"></ion-spinner>
-<ion-slides *ngIf="content.length > 0" 
-  golden
-  pager 
-  loop
-  speed="900"
-  paginationType="bullets">
-  <ion-slide *ngFor="let stadium of content">
-    <img [src]="getSliderImage(stadium.images[0])" alt="">
-    <div class="content">
-      <h3>{{stadium.name}}</h3>
-    </div>
-  </ion-slide>
-</ion-slides>
+<div *ngIf="content.length > 0">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-8>
+        <ion-slides 
+          golden
+          pager 
+          loop
+          autoplay="4000"
+          speed="900"
+          paginationType="bullets">
+          <ion-slide *ngFor="let stadium of content">
+            <img [src]="getSliderImage(stadium.images[0])" alt="">
+            <!-- <div class="content">
+              <h3>{{stadium.name}}</h3>
+              <h3>{{stadium.location}}</h3>
+            </div> -->
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+      <ion-col col-4 [style.height]="'inherit'">
+        <div class="stadium-content">
+          <h3 class="name">Barclays Center</h3>
+          <h3 class="location">Brooklyn, New York</h3>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</div>

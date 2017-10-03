@@ -18,11 +18,8 @@ import * as shuffle from 'shuffle-array'
 })
 export class HomePage {
   user=null;
-  mlbStadiums:Stadium[]=[]
-  nflStadiums:Stadium[]=[]
 
-  carousels: any={}
-  carouselsName: League[]
+  carousels:Stadium[]=[];
 
   category: any={}
   
@@ -37,23 +34,13 @@ export class HomePage {
     this.auth.getAuthState().subscribe(user => {
       this.user = user;
     })
-    this.database.getLeagueStadium('MLB').subscribe((res: Stadium[]) => {
-      this.mlbStadiums = shuffle.pick(res, {'picks': 6})
-    })
-    this.database.getLeagueStadium('NFL').subscribe((res: Stadium[]) => {
-      this.nflStadiums = shuffle.pick(res, {'picks': 6})
-    })
     this.generateCarousel()
   }
   
   generateCarousel() {
-    this.carouselsName = shuffle.pick(Leagues, {'picks': 4})
-    for (let league of this.carouselsName) {
-      this.carousels[league.name] = []
-      this.database.getLeagueStadium(league.name).subscribe((res: Stadium[]) => {
-        this.carousels[league.name] = shuffle.pick(res, {'picks': 6})
-      })
-    }
+    this.database.getAllStadium().subscribe((res: Stadium[]) => {
+      this.carousels = shuffle.pick(res, {'picks': 6})
+    })
   }
 
   leagueChoosed(leagueName) {

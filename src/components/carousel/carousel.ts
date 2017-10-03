@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
 
 import { Stadium } from '../../models/stadium'
 
@@ -9,14 +9,17 @@ import { League } from '../../models/league'
   selector: 'carousel',
   templateUrl: 'carousel.html'
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnChanges {
   @Input() content: Stadium[]
-  @Input() league: League={name: null, logo: null, sport: null}
 
   constructor(
     private imageService: ImageService
   ) {
     
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
   }
 
   getSliderImage(url: string) {

@@ -1,4 +1,4 @@
-import { Component, Input,  ViewChild } from '@angular/core'
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core'
 import { Slides } from 'ionic-angular';
 
 import { Stadium } from '../../models/stadium'
@@ -12,7 +12,8 @@ import { ImageService } from '../../providers/image.service'
 export class CarouselComponent {
   @ViewChild(Slides) slides: Slides
   @Input() content: Stadium[]
-
+  @Output() stadiumTapped = new EventEmitter<any>();
+  
   currentStadium: {name: string, properties: any[]}
   stadiumContent: any[]
 
@@ -60,6 +61,10 @@ export class CarouselComponent {
       }
     }
     return currentStadium
+  }
+
+  handleSlideTap(stadium) {
+    this.stadiumTapped.emit(stadium)
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 import { LeagueViewPage } from '../league-view/league-view';
 import { EditStadiumPage } from '../edit-stadium/edit-stadium';
+import { StadiumViewPage } from '../stadium-view/stadium-view'
 
 import { AuthService } from '../../providers/auth.service';
 import { DatabaseService } from '../../providers/database.service';
@@ -38,7 +39,7 @@ export class HomePage {
   
   generateCarousel() {
     this.database.getAllStadium().subscribe((res: Stadium[]) => {
-      this.carousels = shuffle.pick(res, {'picks': 6})
+      this.carousels = shuffle.pick(res, {'picks': 10})
     })
   }
 
@@ -52,6 +53,11 @@ export class HomePage {
       let modal = this.modalCtrl.create(EditStadiumPage);
       modal.present();
     }
+  }
+
+  handleStadiumTapped(stadium) {
+    this.navCtrl.push(StadiumViewPage, { stadium: stadium, stadiumKey: stadium.$key })
+    
   }
 
 }

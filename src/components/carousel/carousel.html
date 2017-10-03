@@ -8,9 +8,10 @@
           pager 
           loop
           speed="900"
+          autoplay="4000"
           paginationType="bullets"
           (ionSlideDidChange)="handleSlideChanged()">
-          <ion-slide *ngFor="let stadium of content">
+          <ion-slide *ngFor="let stadium of content" (tap)="handleSlideTap(stadium)">
             <img [src]="getSliderImage(stadium.images[0])" alt="">
             <div class="stadium-content">
               <span class="name">{{stadium.name}}</span>

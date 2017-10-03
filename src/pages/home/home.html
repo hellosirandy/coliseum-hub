@@ -23,7 +23,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12>
-          <carousel [content]="carousels"></carousel>
+          <carousel [content]="carousels" (stadiumTapped)="handleStadiumTapped($event)"></carousel>
         </ion-col>
       </ion-row>
     </ion-grid>

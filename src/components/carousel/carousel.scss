@@ -18,6 +18,7 @@ carousel {
     background-color: #F1F1F1;
     box-shadow: 0 0 10px #9D9D9D;
     ion-slide {
+      cursor: pointer;
       align-items: unset !important;
       .slide-zoom {
         text-align: left;

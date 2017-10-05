@@ -21,6 +21,7 @@ export class LeagueViewPage {
   stadiums: Stadium[]
   user=null
   userObs:Subscription
+  stadiumObs:Subscription
   league: League
   
   constructor(
@@ -35,7 +36,7 @@ export class LeagueViewPage {
   ionViewDidLoad() {
     this.league = this.navParams.get('league')
     this.title = this.league.name
-    this.database.getLeagueStadium(this.league.name).subscribe((res: Stadium[]) => {
+    this.stadiumObs = this.database.getLeagueStadium(this.league.name).subscribe((res: Stadium[]) => {
       this.stadiums = res.sort(function(a, b) { return a.name.localeCompare(b.name)})
     })
     this.userObs = this.auth.getAuthState().subscribe(user => {
@@ -45,6 +46,7 @@ export class LeagueViewPage {
   
   ionViewWillUnload() {
     this.userObs.unsubscribe()
+    this.stadiumObs.unsubscribe()
   }
 
   handleStadiumTap(stadium) {

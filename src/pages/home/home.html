@@ -19,15 +19,13 @@
 </ion-menu>
 
 <ion-content padding>
-  <!-- <div class="container">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12>
-          <carousel [content]="carousels" (stadiumTapped)="handleStadiumTapped($event)"></carousel>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div> -->
+  <div class="home">
+    <home-recommendation [type]="'league'" [title]="'MLB'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
+    <home-recommendation [type]="'league'" [title]="'Bundesliga'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
+    <home-recommendation [type]="'architect'" [title]="'Populous'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
+    <home-recommendation [type]="'architect'" [title]="'Ellerbe Becket'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
+    <home-recommendation [type]="'capacity'" [title]="'80000'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
+  </div>
   
   <ion-fab *ngIf="user">
     <button ion-fab (click)="handleAddClick()"><ion-icon name="md-add"></ion-icon></button>

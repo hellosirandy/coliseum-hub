@@ -1,0 +1,16 @@
+<ion-grid *ngIf="stadiums.length > 0">
+  <ion-row>
+    <ion-col col-60>
+      <h3>{{title}}{{type === 'capacity' ? ' +' : ''}}<span>{{type}}</span></h3>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-20 col-md-15 col-lg-12 *ngFor="let stadium of stadiums">
+      <stadium-card [stadium]="stadium" (tap)="stadiumTapped.emit(stadium)"></stadium-card>
+    </ion-col>
+    <ion-col col-60>
+      <hr>
+    </ion-col>
+  </ion-row>
+</ion-grid>

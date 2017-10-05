@@ -48,7 +48,7 @@
   </ion-segment>
   <ion-list>
     <ion-item *ngFor="let item of items" (tap)="handleStadiumTapped(item)">
-      <ion-thumbnail item-start>
+      <ion-thumbnail item-start class="preview-background">
         <img [src]="getThumbnail(item.images)" alt="">
       </ion-thumbnail>
       <h3>{{ item.name }}</h3>

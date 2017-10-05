@@ -35,4 +35,16 @@ export class DatabaseService {
   getAllStadium():FirebaseListObservable<Stadium[]> {
     return this.database.list('/stadiums');
   }
+
+  getPropertyStadium(property: string, value: any):FirebaseListObservable<Stadium[]> {
+    return this.database.list('/stadiums', {
+      query: property === 'capacity' ? {
+        orderByChild: property,
+        startAt: value
+      } : {
+        orderByChild: property,
+        equalTo: value
+      }
+    });
+  }
 }

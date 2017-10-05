@@ -54,7 +54,7 @@ export class SearchPage {
 
   getThumbnail(images) {
     if (images) {
-      return this.imageService.getThumbnail(images[0], 100)
+      return this.imageService.getThumbnail(images[0], 200)
     }
   }
 

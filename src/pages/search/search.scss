@@ -5,6 +5,10 @@ page-search {
   ion-item {
     cursor: pointer;
     ion-thumbnail {
+      background-image: url('/assets/icon/logo/grayscale.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
       img {
         object-fit: cover;
       }
@@ -12,5 +16,6 @@ page-search {
   }
   ion-item:hover {
     background-color: #f2f2f2;
+
   }
 }

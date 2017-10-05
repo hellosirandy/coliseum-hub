@@ -5,12 +5,10 @@ import { EditStadiumPage } from '../edit-stadium/edit-stadium';
 import { StadiumViewPage } from '../stadium-view/stadium-view'
 
 import { AuthService } from '../../providers/auth.service';
-import { DatabaseService } from '../../providers/database.service';
 
 import { Leagues } from '../../statics/sports-leagues-teams'
 import { Stadium } from '../../models/stadium'
 
-import * as shuffle from 'shuffle-array'
 
 @Component({
   selector: 'page-home',
@@ -25,7 +23,6 @@ export class HomePage {
   
   constructor(
     private auth: AuthService,
-    private database: DatabaseService,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
   ) {}
@@ -33,13 +30,6 @@ export class HomePage {
   ionViewDidLoad() {
     this.auth.getAuthState().subscribe(user => {
       this.user = user;
-    })
-    this.generateCarousel()
-  }
-  
-  generateCarousel() {
-    this.database.getAllStadium().subscribe((res: Stadium[]) => {
-      this.carousels = shuffle.pick(res, {'picks': 10})
     })
   }
 

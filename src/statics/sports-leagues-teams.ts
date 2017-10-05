@@ -16,6 +16,7 @@ export const Leagues = [
   <League>{sport: baseball, name: 'NPB', logo: 'assets/images/logos/npb.png'},
   <League>{sport: football, name: 'NFL', logo: 'assets/images/logos/nfl.png'},
   <League>{sport: football, name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
+  <League>{sport: football, name: 'Bundesliga', logo: 'assets/images/logos/bundesliga.png'},
   <League>{sport: basketball, name: 'NBA', logo: 'assets/images/logos/nba.png'},
   <League>{sport: hockey, name: 'NHL', logo: 'assets/images/logos/nhl.png'},
 ];
@@ -187,5 +188,25 @@ export const Teams = {
     <Team>{name: 'Watford', logo: '', location: ''},
     <Team>{name: 'West Bromwich Albion', logo: '', location: ''},
     <Team>{name: 'West Ham United', logo: '', location: ''},
+  ], 
+  Bundesliga: <Team[]> [
+    <Team>{name: 'FC Augsburg', logo: '', location: ''},
+    <Team>{name: 'Hertha BSC', logo: '', location: ''},
+    <Team>{name: 'Werder Bremen', logo: '', location: ''},
+    <Team>{name: 'Borussia Dortmund', logo: '', location: ''},
+    <Team>{name: 'Eintracht Frankfurt', logo: '', location: ''},
+    <Team>{name: 'SC Freiburg', logo: '', location: ''},
+    <Team>{name: 'Hamburger SV', logo: '', location: ''},
+    <Team>{name: 'Hannover 96', logo: '', location: ''},
+    <Team>{name: '1899 Hoffenheim', logo: '', location: ''},
+    <Team>{name: '1. FC Köln', logo: '', location: ''},
+    <Team>{name: 'RB Leipzig', logo: '', location: ''},
+    <Team>{name: 'Bayer Leverkusen', logo: '', location: ''},
+    <Team>{name: 'Mainz 05', logo: '', location: ''},
+    <Team>{name: 'Borussia Mönchengladbach', logo: '', location: ''},
+    <Team>{name: 'Bayern Munich', logo: '', location: ''},
+    <Team>{name: 'Schalke 04', logo: '', location: ''},
+    <Team>{name: 'VfB Stuttgart', logo: '', location: ''},
+    <Team>{name: 'VfL Wolfsburg', logo: '', location: ''},
   ]
 }

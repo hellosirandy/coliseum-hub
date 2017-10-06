@@ -45,11 +45,24 @@ export class SearchPage {
   handleSearchInput(val: string) {
     if (val && val.trim() !== '') {
       this.items = this.allStadiums.filter((stadium: Stadium) => {
-        return stadium[this.searchType].toLowerCase().includes(val.toLowerCase())
+        if (this.searchType !== 'tenants') {
+          return stadium[this.searchType].toLowerCase().includes(val.toLowerCase())
+        } else {
+          return this.keysIncludes(Object.keys(stadium.tenants), val.toLowerCase())
+        }
       })
     } else {
       this.items = []
     }
+  }
+
+  keysIncludes(keys: string[], val: string):boolean {
+    for (let key of keys) {
+      if (key.toLowerCase().includes(val)) {
+        return true
+      }
+    }
+    return false
   }
 
   handleStadiumTapped(stadium) {
@@ -64,6 +77,30 @@ export class SearchPage {
     if (images) {
       return this.imageService.getThumbnail(images[0], 200)
     }
+  }
+
+  getSubtitle(stadium: Stadium) {
+    let result:string
+    if (this.searchType !== 'tenants') {
+      result =  stadium[this.searchType]
+    } else {
+      result =  decodeURI(Object.keys(stadium.tenants).join(', '))
+    }
+    return this.highlightSearchText(result)
+  }
+
+  getTitle(name: string) {
+    if (this.searchType !== 'name') {
+      return name
+    } else {
+      return this.highlightSearchText(name)
+    }
+  }
+
+  highlightSearchText(fullText: string) {
+    const start = fullText.toLowerCase().indexOf(this.searchInput.toLowerCase())
+    const end = start + this.searchInput.length
+    return fullText.slice(0, start) + '<strong>' + fullText.slice(start, end) + '</strong>' + fullText.slice(end)
   }
 
 }

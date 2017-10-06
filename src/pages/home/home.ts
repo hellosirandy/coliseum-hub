@@ -5,7 +5,6 @@ import { EditStadiumPage } from '../edit-stadium/edit-stadium'
 import { StadiumViewPage } from '../stadium-view/stadium-view'
 
 import { AuthService } from '../../providers/auth.service'
-import { DatabaseService } from '../../providers/database.service'
 
 import { Leagues } from '../../statics/sports-leagues-teams'
 import { Stadium } from '../../models/stadium'
@@ -23,7 +22,6 @@ export class HomePage {
 
   constructor(
     private auth: AuthService,
-    private database: DatabaseService,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
   ) {}

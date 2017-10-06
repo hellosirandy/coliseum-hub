@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
-import { LeagueViewPage } from '../league-view/league-view';
-import { EditStadiumPage } from '../edit-stadium/edit-stadium';
+import { Component } from '@angular/core'
+import { ModalController, NavController } from 'ionic-angular'
+import { LeagueViewPage } from '../league-view/league-view'
+import { EditStadiumPage } from '../edit-stadium/edit-stadium'
 import { StadiumViewPage } from '../stadium-view/stadium-view'
 
-import { AuthService } from '../../providers/auth.service';
+import { AuthService } from '../../providers/auth.service'
+import { DatabaseService } from '../../providers/database.service'
 
 import { Leagues } from '../../statics/sports-leagues-teams'
 import { Stadium } from '../../models/stadium'
-
 
 @Component({
   selector: 'page-home',
@@ -20,9 +20,10 @@ export class HomePage {
   carousels:Stadium[]=[];
 
   category: any={}
-  
+
   constructor(
     private auth: AuthService,
+    private database: DatabaseService,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
   ) {}

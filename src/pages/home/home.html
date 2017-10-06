@@ -20,11 +20,21 @@
 
 <ion-content padding>
   <div class="home">
-    <home-recommendation [type]="'league'" [title]="'MLB'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
-    <home-recommendation [type]="'league'" [title]="'Bundesliga'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
-    <home-recommendation [type]="'architect'" [title]="'Populous'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
-    <home-recommendation [type]="'architect'" [title]="'Ellerbe Becket'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
-    <home-recommendation [type]="'capacity'" [title]="'80000'" (stadiumTapped)="handleStadiumTapped($event)"></home-recommendation>
+    <!-- <home-recommendation 
+      [type]="'league'" 
+      [title]="'MLB'" 
+      (stadiumTapped)="handleStadiumTapped($event)">
+    </home-recommendation>
+    <home-recommendation 
+      [type]="'architect'" 
+      [title]="'Populous'" 
+      (stadiumTapped)="handleStadiumTapped($event)">
+    </home-recommendation>
+    <home-recommendation 
+      [type]="'capacity'" 
+      [title]="'80000'" 
+      (stadiumTapped)="handleStadiumTapped($event)">
+    </home-recommendation> -->
   </div>
   
   <ion-fab *ngIf="user">

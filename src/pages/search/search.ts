@@ -7,6 +7,8 @@ import { Stadium } from '../../models/stadium'
 
 import { StadiumViewPage } from '../stadium-view/stadium-view'
 
+import { Subscription } from 'rxjs/Subscription'
+
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
@@ -17,6 +19,8 @@ export class SearchPage {
   searchType='name'
   searchInput: string
   mobile: boolean
+  stadiumObs:Subscription
+  
 
   constructor(
     private database: DatabaseService,
@@ -28,10 +32,14 @@ export class SearchPage {
   }
 
   ionViewDidLoad() {
-    this.database.getAllStadium().subscribe((res: Stadium[]) => {
+    this.stadiumObs = this.database.getAllStadium().subscribe((res: Stadium[]) => {
       this.allStadiums = res
       this.handleSearchInput(this.searchInput)
     })
+  }
+
+  ionViewWillUnload() {
+    this.stadiumObs.unsubscribe()
   }
 
   handleSearchInput(val: string) {

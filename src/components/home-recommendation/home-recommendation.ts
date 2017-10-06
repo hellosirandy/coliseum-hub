@@ -30,12 +30,13 @@ export class HomeRecommendationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const width = window.innerWidth
-    let picks = 10
-    if (width < 768) {
-      picks = 6
-    } else if (width < 992) {
-      picks = 8
-    }
+    const picks = (width >= 768 && width < 992) ? 8 : 6
+    // let picks = 10
+    // if (width < 768) {
+    //   picks = 6
+    // } else if (width < 992) {
+    //   picks = 8
+    // }
     let obs:FirebaseListObservable<Stadium[]> = this.type === 'league' ? this.database.getLeagueStadium(this.title) 
       : this.database.getPropertyStadium(this.type, this.title)
     this.stadiumObs = obs.take(1).subscribe(res => {

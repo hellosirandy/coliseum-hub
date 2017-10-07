@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { ModalController, NavController } from 'ionic-angular'
+import { MenuController, ModalController, NavController } from 'ionic-angular'
 import { LeagueViewPage } from '../league-view/league-view'
 import { EditStadiumPage } from '../edit-stadium/edit-stadium'
 import { StadiumViewPage } from '../stadium-view/stadium-view'
@@ -22,6 +22,7 @@ export class HomePage {
 
   constructor(
     private auth: AuthService,
+    private menuCtrl: MenuController,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
   ) {}
@@ -30,6 +31,10 @@ export class HomePage {
     this.auth.getAuthState().subscribe(user => {
       this.user = user;
     })
+  }
+
+  ionViewWillLeave() {
+    this.menuCtrl.close()
   }
 
   leagueChoosed(leagueName) {

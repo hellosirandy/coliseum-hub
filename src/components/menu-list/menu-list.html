@@ -10,8 +10,7 @@
       (tap)="handleSportTap(sportItem.title)">
     </menu-item>
     <div
-      class="sport-menu"
-      [ngStyle]="{ maxHeight: focusSport === sportItem.title ? 65 * sportItem.collapse.length + 'px' : 0 }">
+      [ngClass]="{ 'sport-menu': true, 'focus': focusSport === sportItem.title }">
       <menu-item
         *ngFor="let leagueItem of sportItem.collapse"
         [thumbnail]="leagueItem.thumbnail"

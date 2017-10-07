@@ -2,7 +2,6 @@ menu-list {
   .sport-menu {
     margin-left: 40px;
     overflow: hidden;
-    transition: max-height 0.4s linear;
     max-height: 0;
   }
   .sport-menu.focus {

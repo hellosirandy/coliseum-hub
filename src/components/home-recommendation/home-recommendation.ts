@@ -40,4 +40,33 @@ export class HomeRecommendationComponent implements OnInit, OnDestroy {
     this.stadiumObs.unsubscribe()
   }
 
+  getTitle():string {
+    let result
+    switch(this.type) {
+      case 'capacity':
+        result = this.title + '+'
+        break
+      case 'openingDate':
+        result = `Over ${this.title} years old`
+        break
+      default:
+        result = this.title
+        break
+    }
+    return result
+  }
+
+  getSubtitle():string {
+    let result
+    switch(this.type) {
+      case 'openingDate':
+        result = 'age'
+        break
+      default:
+        result = this.type
+        break
+    }
+    return result.charAt(0).toUpperCase() + result.slice(1)
+  }
+
 }

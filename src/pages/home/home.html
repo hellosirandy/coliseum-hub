@@ -35,6 +35,11 @@
       [title]="'80000'" 
       (stadiumTapped)="handleStadiumTapped($event)">
     </home-recommendation>
+    <home-recommendation 
+      [type]="'openingDate'" 
+      [title]="'100'" 
+      (stadiumTapped)="handleStadiumTapped($event)">
+    </home-recommendation>
   </div>
   
   <ion-fab *ngIf="user">

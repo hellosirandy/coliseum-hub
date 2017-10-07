@@ -13,7 +13,8 @@ export class MenuListComponent implements OnInit {
   menuList: MenuItem[]=[];
 
   focusSport: string;
-  category: any={}
+  leagueCategory: any={}
+  sportCategory: any={}
 
   constructor(
     private database: DatabaseService,
@@ -37,13 +38,21 @@ export class MenuListComponent implements OnInit {
       }
     });
     this.database.getAllStadium().subscribe(stadiums => {
-      this.category = {};
+      this.leagueCategory = {}
+      this.sportCategory = {}
       stadiums.forEach(stadium => {
         for (let league in stadium.leagues) {
-          if (this.category[league]) {
-            this.category[league]++;
+          if (this.leagueCategory[league]) {
+            this.leagueCategory[league]++
           } else {
-            this.category[league] = 1;
+            this.leagueCategory[league] = 1
+          }
+        }
+        for (let sport in stadium.sports)  {
+          if (this.sportCategory[sport]) {
+            this.sportCategory[sport]++
+          } else {
+            this.sportCategory[sport] = 1
           }
         }
       });
@@ -55,6 +64,13 @@ export class MenuListComponent implements OnInit {
       this.focusSport = sport;
     } else {
       this.focusSport = '';
+    }
+  }
+
+  getMaxHeight(l, sport) {
+    return { 
+      maxHeight: this.focusSport === sport ? `${65 * l}px` : '0px',
+      transition: `max-height ${0.1 * l}s ease`
     }
   }
 

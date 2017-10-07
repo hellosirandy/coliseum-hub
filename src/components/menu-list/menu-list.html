@@ -6,16 +6,19 @@
     <menu-item
       [thumbnail]="sportItem.thumbnail"
       [title]="sportItem.title.charAt(0).toUpperCase()+sportItem.title.slice(1)"
+      [subtitle]="sportCategory[sportItem.title]"
       [collapse]="sportItem.collapse.length > 0"
       (tap)="handleSportTap(sportItem.title)">
     </menu-item>
     <div
-      [ngClass]="{ 'sport-menu': true, 'focus': focusSport === sportItem.title }">
+      class="sport-menu"
+      [ngStyle]="getMaxHeight(sportItem.collapse.length, sportItem.title)"
+      >
       <menu-item
         *ngFor="let leagueItem of sportItem.collapse"
         [thumbnail]="leagueItem.thumbnail"
         [title]="leagueItem.title"
-        [subtitle]="category[leagueItem.title]"
+        [subtitle]="leagueCategory[leagueItem.title]"
         [collapse]="leagueItem.collapse.length > 0"
         (tap)="leagueChoosed.emit(leagueItem.title)">
       </menu-item>

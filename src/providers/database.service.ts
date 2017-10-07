@@ -37,14 +37,28 @@ export class DatabaseService {
   }
 
   getPropertyStadium(property: string, value: any):FirebaseListObservable<Stadium[]> {
-    return this.database.list('/stadiums', {
-      query: property === 'capacity' ? {
-        orderByChild: property,
-        startAt: value
-      } : {
-        orderByChild: property,
-        equalTo: value
-      }
-    });
+    let query
+    switch(property){
+      case 'capacity':
+        query = {
+          orderByChild: property,
+          startAt: value
+        }
+        break
+      case 'openingDate':
+        const date = new Date(new Date().setFullYear(new Date().getFullYear() - value))
+        const dateString = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`
+        query = {
+          orderByChild: property,
+          endAt: dateString
+        }
+        break
+      default:
+        query = {
+          orderByChild: property,
+          equalTo: value
+        }
+    }
+    return this.database.list('/stadiums', { query });
   }
 }

@@ -8,9 +8,6 @@ page-home {
     div.home {
       max-width: 1200px;
       margin: auto;
-      @media (min-width: $xl-screen) {
-        padding: 60px;
-      }
     }
     .container {
       max-width: $xl-screen;

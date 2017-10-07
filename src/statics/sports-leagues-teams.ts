@@ -14,6 +14,8 @@ export const Sports:Sport[] = [
 export const Leagues = [
   <League>{sport: baseball,name: 'MLB', logo: 'assets/images/logos/mlb.png'},
   <League>{sport: baseball, name: 'NPB', logo: 'assets/images/logos/npb.png'},
+  <League>{sport: baseball, name: 'CPBL', logo: 'assets/images/logos/cpbl.png'},
+  <League>{sport: baseball, name: 'KBO', logo: 'assets/images/logos/kbo.png'},
   <League>{sport: football, name: 'NFL', logo: 'assets/images/logos/nfl.png'},
   <League>{sport: football, name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
   <League>{sport: football, name: 'Bundesliga', logo: 'assets/images/logos/bundesliga.png'},
@@ -208,5 +210,23 @@ export const Teams = {
     <Team>{name: 'Schalke 04', logo: '', location: ''},
     <Team>{name: 'VfB Stuttgart', logo: '', location: ''},
     <Team>{name: 'VfL Wolfsburg', logo: '', location: ''},
+  ],
+  CPBL: <Team[]> [
+    <Team>{name: 'Chinatrust Brothers', logo: '', location: ''},
+    <Team>{name: 'Lamigo Monkeys', logo: '', location: ''},
+    <Team>{name: 'Fubon Guardians', logo: '', location: ''},
+    <Team>{name: 'Uni-President 7-Eleven Lions', logo: '', location: ''},
+  ],
+  KBO: <Team[]> [
+    <Team>{name: 'Hanwha Eagles', logo: '', location: ''},
+    <Team>{name: 'Kia Tigers', logo: '', location: ''},
+    <Team>{name: 'LG Twins', logo: '', location: ''},
+    <Team>{name: 'NC Dinos', logo: '', location: ''},
+    <Team>{name: 'Nexen Heroes', logo: '', location: ''},
+    <Team>{name: 'Doosan Bears', logo: '', location: ''},
+    <Team>{name: 'KT Wiz', logo: '', location: ''},
+    <Team>{name: 'Lotte Giants', logo: '', location: ''},
+    <Team>{name: 'Samsung Lions', logo: '', location: ''},
+    <Team>{name: 'SK Wyverns', logo: '', location: ''},
   ]
 }

@@ -88,28 +88,29 @@
         *ngIf="editStadiumForm.get('capacity').invalid && submitTried">
         * {{ 'CAPACITY' | translate }}{{ 'IS_REQUIRED' | translate }}
       </span>
-      <ion-item class="file-uploader" (click)="handleFileUploadClick()">
-        <ion-label>
-          <input type="file"
-            #fileInput multiple
-            (change)="handleFileSelected($event.target.files)"
-            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
-          <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon> {{ 'UPLOAD_IMAGE' | translate }}
-        </ion-label>
-      </ion-item>
       <ion-item class="file-preview">
-        <ion-grid>
-          <ion-row>
-            <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.old">
-              <div square class="img-cell old" [style.backgroundImage]="'url('+getThumbnail(img, 200)+')'">
+        <h3>{{ 'UPLOAD_IMAGE' | translate }}</h3>
+        <ion-row>
+          <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.old" (click)="handleFileClick($event)">
+            <div rectangle ratio="1" class="img-cell old" [style.backgroundImage]="'url('+getThumbnail(img, 200)+')'">
+            </div>
+          </ion-col>
+          <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.new" (click)="handleFileClick($event)">
+            <div rectangle ratio="1" class="img-cell new" [style.backgroundImage]="'url('+img+')'">
+            </div>
+          </ion-col>
+          <ion-col col-4 col-sm-3>
+            <div rectangle ratio="1" class="img-cell upload file-upload" (click)="handleFileUploadClick()">
+              <div class="file-upload-content">
+                <input type="file"
+                #fileInput multiple
+                (change)="handleFileSelected($event.target.files)"
+                accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*">
+                <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>
               </div>
-            </ion-col>
-            <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.new">
-              <div square class="img-cell new" [style.backgroundImage]="'url('+img+')'">
-              </div>
-            </ion-col>
+            </div>
+          </ion-col>
           </ion-row>
-        </ion-grid>
       </ion-item>
     </ion-list>
     <button type="submit" ion-button block>{{ 'SAVE' | translate }}</button>

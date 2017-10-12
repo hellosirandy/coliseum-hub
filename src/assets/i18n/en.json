@@ -22,5 +22,9 @@
   "STADIUM_ADDED": "You have added {{stadium}}",
   "STADIUM_UPDATED": "You have updated {{stadium}}",
   "SAVING_STADIUM": "Saving {{stadium}}...",
-  "UPLOADING_IMAGE": "Uploading images..."
+  "UPLOADING_IMAGE": "Uploading images...",
+  "REMOVE_IMAGE": "Remove image",
+  "SET_COVER": "Set as cover",
+  "ABOUT": "About",
+  "ALBUM": "Album"
 }

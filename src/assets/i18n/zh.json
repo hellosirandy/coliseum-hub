@@ -22,5 +22,9 @@
   "STADIUM_ADDED": "您已新增 {{stadium}}",
   "STADIUM_UPDATED": "您已更新 {{stadium}}",
   "SAVING_STADIUM": "正在儲存 {{stadium}}...",
-  "UPLOADING_IMAGE": "正在上傳照片..."
+  "UPLOADING_IMAGE": "正在上傳照片...",
+  "REMOVE_IMAGE": "刪除照片",
+  "SET_COVER": "設為封面",
+  "ABOUT": "關於",
+  "ALBUM": "相簿"
 }

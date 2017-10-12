@@ -32,7 +32,7 @@ export class HomeRecommendationComponent implements OnInit, OnDestroy {
     let obs:FirebaseListObservable<Stadium[]> = this.type === 'league' ? this.database.getLeagueStadium(this.title) 
       : this.database.getPropertyStadium(this.type, this.title)
     this.stadiumObs = obs.take(1).subscribe(res => {
-      this.stadiums = shuffle.pick(res, {'picks': 12})
+      this.stadiums = shuffle.pick(res, {'picks': 6})
     })
   }
 

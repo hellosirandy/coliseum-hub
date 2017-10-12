@@ -8,26 +8,31 @@ page-edit-stadium {
         padding-left: 0 !important;
       }
 
-      ion-item.file-uploader {
-        cursor: pointer;
-        margin-top: 36px;
-        border: dashed 2px map-get($colors, primary);
-        text-align: center;
-        .item-inner {
-          border-bottom: none !important;
-          ion-label {
-            color: map-get($colors, primary);
-            margin: 24px 0;
-          }
-          input[type="file"] {
-            display: none;
-          }
-        }
-      }
-
       ion-item.file-preview {
+        margin-top: 15px;
+        h3 {
+          color: map-get($colors, primary);
+          font-size: inherit;
+          margin-bottom: 10px;
+        }
         .item-inner {
           border-bottom: none !important;
+        }
+
+        .file-upload {
+          text-align: center;
+        }
+        .file-upload:before {
+          content: '';
+          display: inline-block;
+          vertical-align: middle ;
+          height: 100%;
+        }
+        .file-upload-content {
+          font-size: 2.3rem;
+          color: map-get($colors, primary);
+          display: inline-block;
+          vertical-align: middle;
         }
       }
 
@@ -39,11 +44,18 @@ page-edit-stadium {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
+      cursor: pointer;
       &.old {
         border: dashed 1.5px #b5b5b5;
       }
       &.new {
         border: dashed 1.5px map-get($colors, secondary);
+      }
+      &.upload {
+        border: dashed 1.5px map-get($colors, primary);
+        input[type="file"] {
+          display: none;
+        }
       }
     }
   }

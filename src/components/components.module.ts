@@ -6,6 +6,8 @@ import { DirectivesModule } from '../directives/directives.module';
 import { StadiumCardComponent } from './stadium-card/stadium-card';
 import { CarouselComponent } from './carousel/carousel';
 import { HomeRecommendationComponent } from './home-recommendation/home-recommendation';
+import { AboutSectionComponent } from './about-section/about-section';
+import { AlbumSectionComponent } from './album-section/album-section';
 @NgModule({
 	declarations: [
 		MenuListComponent,
@@ -13,6 +15,8 @@ import { HomeRecommendationComponent } from './home-recommendation/home-recommen
     StadiumCardComponent,
     CarouselComponent,
     HomeRecommendationComponent,
+    AboutSectionComponent,
+    AlbumSectionComponent,
 	],
 	imports: [
 		IonicPageModule.forChild(MenuListComponent),
@@ -26,6 +30,8 @@ import { HomeRecommendationComponent } from './home-recommendation/home-recommen
     StadiumCardComponent,
     CarouselComponent,
     HomeRecommendationComponent,
+    AboutSectionComponent,
+    AlbumSectionComponent,
 	]
 })
 export class ComponentsModule {}

@@ -1,5 +1,5 @@
 <div class="stadium">
-  <div class="preview-image preview-background" golden 
+  <div class="preview-image preview-background" rectangle [ratio]="1.414"
   >
     <img *ngIf="stadium.images" [src]="imageUrl" alt="" (error)="imgError()">
   </div>

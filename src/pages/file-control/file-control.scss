@@ -1,0 +1,11 @@
+page-file-control {
+  ion-list {
+    margin-bottom: 0 !important;
+    button {
+      padding-left: 0 !important;
+      .item-inner {
+        padding-left: 16px !important;
+      }
+    }
+  }
+}

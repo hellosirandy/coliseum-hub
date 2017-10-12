@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { SquareDirective } from './square/square';
-import { GoldenDirective } from './golden/golden';
+import { RectangleDirective } from './rectangle/rectangle';
 @NgModule({
-	declarations: [SquareDirective,
-    GoldenDirective],
+	declarations: [
+		RectangleDirective
+	],
 	imports: [],
-	exports: [SquareDirective,
-    GoldenDirective]
+	exports: [
+		RectangleDirective
+	]
 })
 export class DirectivesModule {}

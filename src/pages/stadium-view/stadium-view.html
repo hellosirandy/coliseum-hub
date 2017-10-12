@@ -7,18 +7,29 @@
 </ion-header>
 
 
-<ion-content padding>
-  <!-- <div *ngIf="stadium">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-3 *ngFor="let image of stadium.images">
-          <div class="cell" square>
-            <img [src]="image" alt="">
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div> -->
+<ion-content>
+  <div *ngIf="stadium">
+    <div class="container">
+      <div rectangle [ratio]="1.414">
+        <img *ngIf="cover" [src]="cover" alt="">
+      </div>
+      <div padding>
+        <h3>{{stadium.name}}</h3>
+        <ion-segment [(ngModel)]="segment" color="primary">
+          <ion-segment-button value="about">
+            {{ 'ABOUT' | translate }}
+          </ion-segment-button>
+          <ion-segment-button value="album">
+            {{ 'ALBUM' | translate }}
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+    <div class="container">
+
+    </div>
+  </div>
+  
   
   <ion-fab *ngIf="user">
     <button ion-fab (click)="handleEditClick()"><ion-icon name="md-create"></ion-icon></button>

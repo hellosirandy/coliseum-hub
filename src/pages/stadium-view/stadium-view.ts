@@ -13,20 +13,20 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: 'stadium-view.html',
 })
 export class StadiumViewPage {
-  stadium:Stadium=null;
-  user=null;
+  stadium:Stadium=null
+  cover:string
+  user=null
 
-  userObs:Subscription;
-  stadiumObs: Subscription;
+  userObs:Subscription
+  stadiumObs: Subscription
+  segment="about"
 
   constructor(
     private auth: AuthService,
     private database: DatabaseService,
     private modalCtrl: ModalController,
     private navParams: NavParams
-  ) {
-    // this.stadium = navParams.get('stadium');
-  }
+  ) {}
 
   ionViewDidLoad() {
     this.userObs = this.auth.getAuthState().subscribe(user => {
@@ -34,16 +34,17 @@ export class StadiumViewPage {
     });
     this.stadiumObs = this.database.getStadium(this.navParams.get('stadiumKey')).subscribe(stadium => {
       this.stadium = stadium;
+      this.cover = stadium.images ? stadium.images[0] : null
     });
   }
 
   ionViewWillUnload() {
-    this.userObs.unsubscribe();
+    this.userObs.unsubscribe()
   }
 
   handleEditClick() {
-    let modal = this.modalCtrl.create(EditStadiumPage, { stadium: this.stadium });
-    modal.present();
+    let modal = this.modalCtrl.create(EditStadiumPage, { stadium: this.stadium })
+    modal.present()
   }
 
 }

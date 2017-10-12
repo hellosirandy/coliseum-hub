@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { LoadingController, NavParams, ToastController, ViewController } from 'ionic-angular'
+import { LoadingController, NavParams, PopoverController, ToastController, ViewController } from 'ionic-angular'
 
 import { StorageService } from '../../providers/storage.service'
 import { DatabaseService } from '../../providers/database.service'
@@ -13,6 +13,8 @@ import { League } from '../../models/league'
 import { Team } from '../../models/team'
 
 import { Sports, Leagues, Teams } from '../../statics/sports-leagues-teams'
+
+import { FileControlPage } from '../../pages/file-control/file-control'
 
 @Component({
   selector: 'page-edit-stadium',
@@ -41,6 +43,7 @@ export class EditStadiumPage implements OnInit {
     private imageService: ImageService,
     private loadingCtrl: LoadingController,
     params: NavParams,
+    private popoverCtrl: PopoverController,
     private storage: StorageService,
     private toastCtrl: ToastController,
     private translate: TranslateService,
@@ -259,6 +262,14 @@ export class EditStadiumPage implements OnInit {
 
   getThumbnail(image, size: 100 | 200 | 400 | 800) {
     return this.imageService.getThumbnail(image, size)
+  }
+
+  handleFileClick(myEvent) {
+    console.log(myEvent)
+    const popover = this.popoverCtrl.create(FileControlPage)
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }

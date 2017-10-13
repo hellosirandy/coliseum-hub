@@ -4,13 +4,16 @@ page-stadium-view {
     div.container {
       background-color: white;
       max-width: 800px;
-      // box-shadow: 0 0 3px #B8B8B8;
       border: 0.5px solid #e7e6e6;
       margin: auto;
+      margin-bottom: 30px;
       img {
         object-fit: cover;
         width: 100%;
         height: 100%;
+      }
+      @media (max-width:$lg-screen) {
+        margin-bottom: 10px;
       }
     }
   }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core'
 import { MenuListComponent } from './menu-list/menu-list';
 import { MenuItemComponent } from './menu-item/menu-item';
 import { IonicPageModule } from 'ionic-angular';
@@ -22,7 +23,8 @@ import { AlbumSectionComponent } from './album-section/album-section';
 		IonicPageModule.forChild(MenuListComponent),
 		IonicPageModule.forChild(MenuItemComponent),
 		IonicPageModule.forChild(StadiumCardComponent),
-		DirectivesModule,
+    DirectivesModule,
+    TranslateModule
 	],
 	exports: [
 		MenuListComponent,

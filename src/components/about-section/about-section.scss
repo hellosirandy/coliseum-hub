@@ -1,3 +1,21 @@
 about-section {
+  ion-row.outer {
+    border-bottom: 0.5px solid #dfdfdf;
+    padding: 10px 0;
+    ion-col.content {
+      ion-col {
+        padding: 0;
+      }
+      line-height: 1.5rem;
+    }
+    ion-col.header {
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+  }
 
+  ion-row.outer:last-child {
+    border-bottom: none;
+  }
+  
 }

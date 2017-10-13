@@ -1,22 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-/**
- * Generated class for the AboutSectionComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { Stadium } from '../../models/stadium'
+
 @Component({
   selector: 'about-section',
   templateUrl: 'about-section.html'
 })
 export class AboutSectionComponent {
+  @Input() stadium:Stadium
 
-  text: string;
+  aboutList:string[]=['leagues', 'tenants', 'location', 'capacity', 'architect', 'openingDate']
+  aboutListTranslate:any={'leagues': 'LEAGUE', 'tenants': 'TENANT', 'location': 'LOCATION', 'capacity': 'CAPACITY', 'architect': 'ARCHITECT', 'openingDate': "OPENING_DATE"}
 
   constructor() {
-    console.log('Hello AboutSectionComponent Component');
-    this.text = 'Hello World';
+    
+  }
+
+  getHeader(header:string) {
+    let result=header
+    if (header === 'openingDate') {
+      result = 'Opened'
+    }
+    result = result.charAt(0).toUpperCase() + result.slice(1)
+    return result
+  } 
+
+  getContent(header:any) {
+    let result
+    const content = this.stadium[header]
+    if (content instanceof Object) {
+      result = Object.keys(content)
+    } else {
+      result = [content]
+    }
+    for (let i = 0; i < result.length; i++) {
+      result[i] = decodeURI(result[i])
+    }
+    return result
   }
 
 }

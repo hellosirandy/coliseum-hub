@@ -1,4 +1,12 @@
-<!-- Generated template for the AboutSectionComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-grid>
+  <ion-row *ngFor="let name of aboutList" class="outer">
+    <ion-col col-6 class="header">{{ aboutListTranslate[name]|translate }}</ion-col>
+    <ion-col col-6 class="content">
+      <ion-row *ngFor="let subContent of getContent(name)">
+        <ion-col col-12 class="inner-col">
+          {{subContent}}
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-grid>

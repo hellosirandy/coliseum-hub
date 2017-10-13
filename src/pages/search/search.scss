@@ -12,6 +12,8 @@ page-search {
   }
   ion-item:hover {
     background-color: #f2f2f2;
-
+  }
+  ion-segment {
+    position: relative !important;
   }
 }

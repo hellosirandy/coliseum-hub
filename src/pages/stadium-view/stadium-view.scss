@@ -3,7 +3,7 @@ page-stadium-view {
     background-color: map-get($colors, light) !important;
     div.container {
       background-color: white;
-      max-width: 800px;
+      max-width: $lg-screen;
       border: 0.5px solid #e7e6e6;
       margin: auto;
       margin-bottom: 30px;

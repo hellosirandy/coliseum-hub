@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core'
 
-/**
- * Generated class for the AlbumSectionComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { Stadium } from '../../models/stadium'
+
+import { ImageService } from '../../providers/image.service'
+
 @Component({
   selector: 'album-section',
   templateUrl: 'album-section.html'
 })
-export class AlbumSectionComponent {
+export class AlbumSectionComponent implements OnChanges {
+  @Input() stadium:Stadium
+  @Output() imageClick = new EventEmitter<void>()
 
-  text: string;
+  images:string[]=[]
 
-  constructor() {
-    console.log('Hello AlbumSectionComponent Component');
-    this.text = 'Hello World';
+  constructor(
+    private imageService: ImageService,
+  ) {
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.stadium.currentValue !== changes.stadium.previousValue) {
+      this.images = this.stadium.images ? this.stadium.images : []
+    }
+  }
+
+  getThumbnail(url) {
+    return this.imageService.getThumbnail(url, 200)
+  }
+
+  handleImageClick(url) {
+    this.imageClick.emit()
   }
 
 }

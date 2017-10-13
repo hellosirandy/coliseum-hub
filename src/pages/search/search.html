@@ -8,7 +8,7 @@
       [(ngModel)]="searchInput">
     </ion-searchbar>
   </ion-navbar>
-  <ion-toolbar *ngIf="mobile">
+  <ion-toolbar *ngIf="mobile" padding>
     <ion-segment [(ngModel)]="searchType" color="primary" (ngModelChange)="handleSearchTypeChange($event)">
       <ion-segment-button value="name">
         {{ 'NAME' | translate }}

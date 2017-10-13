@@ -27,6 +27,10 @@
     </div>
     <div class="container" padding>
       <about-section [stadium]="stadium" *ngIf="segment === 'about'"></about-section>
+      <album-section *ngIf="segment === 'album'"
+        [stadium]="stadium"
+        (imageClick)="handleImageClick()">
+      </album-section>
     </div>
   </div>
   

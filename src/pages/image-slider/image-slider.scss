@@ -1,0 +1,14 @@
+page-image-slider {
+  ion-icon {
+    color: #a3a3a3;
+    // font-size: 30px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  ion-icon:hover {
+    color: #fcfcfc;
+  }
+}

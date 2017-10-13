@@ -1,4 +1,9 @@
-<!-- Generated template for the AlbumSectionComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let image of images" col-4 col-md-3 col-lg-2>
+      <div rectangle [ratio]="1">
+        <img [src]="getThumbnail(image)" alt="" (click)="handleImageClick(image)">
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

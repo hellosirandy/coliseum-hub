@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { ModalController, NavParams } from 'ionic-angular';
-import { Stadium } from '../../models/stadium';
-import { EditStadiumPage } from '../edit-stadium/edit-stadium';
+import { Component } from '@angular/core'
+import { ModalController, NavParams } from 'ionic-angular'
+import { Stadium } from '../../models/stadium'
+import { EditStadiumPage } from '../edit-stadium/edit-stadium'
+import { ImageSliderPage } from '../image-slider/image-slider'
 
-import { AuthService } from '../../providers/auth.service';
-import { DatabaseService } from '../../providers/database.service';
+import { AuthService } from '../../providers/auth.service'
+import { DatabaseService } from '../../providers/database.service'
 
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription'
 
 @Component({
   selector: 'page-stadium-view',
@@ -43,7 +44,15 @@ export class StadiumViewPage {
   }
 
   handleEditClick() {
-    let modal = this.modalCtrl.create(EditStadiumPage, { stadium: this.stadium })
+    const modal = this.modalCtrl.create(EditStadiumPage, { stadium: this.stadium })
+    modal.present()
+  }
+
+  handleImageClick() {
+    const modal = this.modalCtrl.create(
+      ImageSliderPage, 
+      { images: this.stadium.images }
+    )
     modal.present()
   }
 

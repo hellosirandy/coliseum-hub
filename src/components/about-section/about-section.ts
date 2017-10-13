@@ -34,7 +34,7 @@ export class AboutSectionComponent {
       result = [content]
     }
     for (let i = 0; i < result.length; i++) {
-      result[i] = decodeURI(result[i])
+      result[i] = decodeURI(result[i]).replace('_', ' ')
     }
     return result
   }

@@ -25,7 +25,7 @@
         </ion-segment>
       </div>
     </div>
-    <div class="container" padding>
+    <div class="container" [ngStyle]="{ padding: segment === 'about' ? '16px' : '0px' }">
       <about-section [stadium]="stadium" *ngIf="segment === 'about'"></about-section>
       <album-section *ngIf="segment === 'album'"
         [stadium]="stadium"

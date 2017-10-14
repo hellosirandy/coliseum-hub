@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { ModalController, NavParams } from 'ionic-angular'
+import { Component, ElementRef, ViewChild } from '@angular/core'
+import { Content, ModalController, NavParams } from 'ionic-angular'
 import { Stadium } from '../../models/stadium'
 import { EditStadiumPage } from '../edit-stadium/edit-stadium'
 import { ImageSliderPage } from '../image-slider/image-slider'
@@ -14,6 +14,8 @@ import { Subscription } from 'rxjs/Subscription'
   templateUrl: 'stadium-view.html',
 })
 export class StadiumViewPage {
+  @ViewChild(Content) content: Content
+
   stadium:Stadium=null
   cover:string
   user=null
@@ -25,6 +27,7 @@ export class StadiumViewPage {
   constructor(
     private auth: AuthService,
     private database: DatabaseService,
+    private elementRef: ElementRef,
     private modalCtrl: ModalController,
     private navParams: NavParams
   ) {}
@@ -38,9 +41,18 @@ export class StadiumViewPage {
       this.cover = stadium.images ? stadium.images[0] : null
     });
   }
+  
+  ionViewDidEnter() {
+    const width = this.elementRef.nativeElement.offsetWidth
+    const height = this.elementRef.nativeElement.offsetHeight
+    if (width > height) {
+      this.content.scrollToBottom()
+    }
+  }
 
   ionViewWillUnload() {
     this.userObs.unsubscribe()
+    this.stadiumObs.unsubscribe()
   }
 
   handleEditClick() {

@@ -2,6 +2,9 @@ page-stadium-view {
   ion-content {
     background-color: map-get($colors, light) !important;
     div.container {
+      &.padding {
+        padding: 16px;
+      }
       background-color: white;
       max-width: $lg-screen;
       border: 0.5px solid #e7e6e6;

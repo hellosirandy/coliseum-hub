@@ -20,7 +20,7 @@ export class ImageSliderPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.images)
+    
   }
 
   handleCloseClick() {

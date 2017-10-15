@@ -14,7 +14,7 @@
         <img *ngIf="cover" [src]="cover" alt="">
       </div>
       <div padding>
-        <h3>{{stadium.name}}</h3>
+        <h3 #stadiumHeader>{{stadium.name}}</h3>
         <ion-segment [(ngModel)]="segment" color="primary">
           <ion-segment-button value="about">
             {{ 'ABOUT' | translate }}
@@ -29,9 +29,12 @@
       <about-section [stadium]="stadium" *ngIf="segment === 'about'"></about-section>
       <album-section *ngIf="segment === 'album'"
         [stadium]="stadium"
-        (imageClick)="handleImageClick()">
+        (imageClick)="handleImageClick($event)">
       </album-section>
     </div>
+    <!-- <div class="container" padding>
+      <h3>You may also like</h3>
+    </div> -->
   </div>
   
   

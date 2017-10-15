@@ -6,9 +6,10 @@ const baseball:Sport = <Sport>{name: 'baseball', logo: 'assets/images/baseball.p
 const football:Sport = <Sport>{name: 'football', logo: 'assets/images/football.png'}
 const basketball:Sport = <Sport>{name: 'basketball', logo: 'assets/images/basketball.png'}
 const hockey:Sport = <Sport>{name: 'hockey', logo: 'assets/images/hockey.png'}
+const soccer:Sport = <Sport>{name: 'soccer', logo: 'assets/images/soccer.png'}
 
 export const Sports:Sport[] = [
-  baseball, football, basketball, hockey
+  baseball, football, soccer, basketball, hockey
 ]
 
 export const Leagues = [
@@ -17,8 +18,8 @@ export const Leagues = [
   <League>{sport: baseball, name: 'CPBL', logo: 'assets/images/logos/cpbl.png'},
   <League>{sport: baseball, name: 'KBO', logo: 'assets/images/logos/kbo.png'},
   <League>{sport: football, name: 'NFL', logo: 'assets/images/logos/nfl.png'},
-  <League>{sport: football, name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
-  <League>{sport: football, name: 'Bundesliga', logo: 'assets/images/logos/bundesliga.png'},
+  <League>{sport: soccer, name: 'Premier_League', logo: 'assets/images/logos/premier_league.png'},
+  <League>{sport: soccer, name: 'Bundesliga', logo: 'assets/images/logos/bundesliga.png'},
   <League>{sport: basketball, name: 'NBA', logo: 'assets/images/logos/nba.png'},
   <League>{sport: hockey, name: 'NHL', logo: 'assets/images/logos/nhl.png'},
 ];

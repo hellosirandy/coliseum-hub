@@ -1,8 +1,8 @@
 <ion-grid>
   <ion-row>
-    <ion-col *ngFor="let image of images" col-4 col-md-3 col-lg-2>
-      <div rectangle [ratio]="1">
-        <img [src]="getThumbnail(image)" alt="" (click)="handleImageClick(image)">
+    <ion-col *ngFor="let image of images; let i = index" col-4 col-md-3 col-lg-2>
+      <div rectangle [ratio]="1" class="preview-background">
+        <img [src]="getThumbnail(image)" alt="" (click)="handleImageClick(i)">
       </div>
     </ion-col>
   </ion-row>

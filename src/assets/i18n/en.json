@@ -26,5 +26,6 @@
   "REMOVE_IMAGE": "Remove image",
   "SET_COVER": "Set as cover",
   "ABOUT": "About",
-  "ALBUM": "Album"
+  "ALBUM": "Album",
+  "OVER_YEARS_AGO": "Over {{value}} years ago"
 }

@@ -1,10 +1,14 @@
-<ion-slides style="background-color: black">
+<ion-slides
+  zoom="true"
+  [initialSlide]="initialSlide">
   <ion-slide *ngFor="let image of images">
-    <img [src]="image" alt="">
+    <div class="swiper-zoom-container">
+      <img [src]="image" alt="">
+    </div>
   </ion-slide>
 </ion-slides>
 
 <ion-icon name="close" 
   (click)="handleCloseClick()"
-  [ngStyle]="{ fontSize: ios ? '50px' : '30px' }">
+  [ngStyle]="{ fontSize: ios ? '50px' : '30px', width: ios ? '40px' : '20px' }">
 </ion-icon>

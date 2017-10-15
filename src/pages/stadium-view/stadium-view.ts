@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription'
 })
 export class StadiumViewPage {
   @ViewChild(Content) content: Content
+  @ViewChild('stadiumHeader') stadiumHeader
 
   stadium:Stadium=null
   cover:string
@@ -46,7 +47,7 @@ export class StadiumViewPage {
     const width = this.elementRef.nativeElement.offsetWidth
     const height = this.elementRef.nativeElement.offsetHeight
     if (width > height) {
-      this.content.scrollToBottom()
+      this.content.scrollTo(0, this.stadiumHeader.nativeElement.offsetTop, 600)
     }
   }
 
@@ -60,10 +61,10 @@ export class StadiumViewPage {
     modal.present()
   }
 
-  handleImageClick() {
+  handleImageClick(index) {
     const modal = this.modalCtrl.create(
       ImageSliderPage, 
-      { images: this.stadium.images }
+      { images: this.stadium.images, index: index }
     )
     modal.present()
   }

@@ -26,5 +26,6 @@
   "REMOVE_IMAGE": "刪除照片",
   "SET_COVER": "設為封面",
   "ABOUT": "關於",
-  "ALBUM": "相簿"
+  "ALBUM": "相簿",
+  "OVER_YEARS_AGO": "超過 {{value}} 年"
 }

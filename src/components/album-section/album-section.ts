@@ -10,7 +10,7 @@ import { ImageService } from '../../providers/image.service'
 })
 export class AlbumSectionComponent implements OnChanges {
   @Input() stadium:Stadium
-  @Output() imageClick = new EventEmitter<void>()
+  @Output() imageClick = new EventEmitter<number>()
 
   images:string[]=[]
 
@@ -30,8 +30,8 @@ export class AlbumSectionComponent implements OnChanges {
     return this.imageService.getThumbnail(url, 200)
   }
 
-  handleImageClick(url) {
-    this.imageClick.emit()
+  handleImageClick(index) {
+    this.imageClick.emit(index)
   }
 
 }

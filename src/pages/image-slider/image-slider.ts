@@ -8,7 +8,8 @@ import { NavParams, Platform, ViewController } from 'ionic-angular';
 export class ImageSliderPage {
 
   images:string[]=[]
-  ios: boolean=false;
+  ios: boolean=false
+  initialSlide: number=0
 
   constructor(
     navParams: NavParams,
@@ -16,6 +17,7 @@ export class ImageSliderPage {
     private viewCtrl: ViewController,
   ) {
     this.images = navParams.get('images') ? navParams.get('images') : []
+    this.initialSlide = navParams.get('index')
     this.ios = platform.is('ios')
   }
 

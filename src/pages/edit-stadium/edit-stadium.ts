@@ -12,6 +12,8 @@ import { Sport } from '../../models/sport'
 import { League } from '../../models/league'
 import { Team } from '../../models/team'
 
+import { Observable } from 'rxjs/Observable';
+
 import { Sports, Leagues, Teams } from '../../statics/sports-leagues-teams'
 
 import { FileControlPage } from '../../pages/file-control/file-control'
@@ -28,7 +30,6 @@ export class EditStadiumPage implements OnInit {
   stadium: any=null
 
   fileList: any[]=[]
-  previewImages = {old: [], new: []}
 
   sportsCandidates: Sport[]=Sports
   leaguesCandidates: League[]=[]
@@ -36,6 +37,9 @@ export class EditStadiumPage implements OnInit {
 
   imagesBuffer: any[]=[]
   fromLeague: League
+
+  databaseImages: string[]=[]
+  memoryImages: string[]=[]
 
   constructor(
     private viewCtrl: ViewController,
@@ -53,7 +57,7 @@ export class EditStadiumPage implements OnInit {
   }
 
   ngOnInit() {
-    this.previewImages.old = ((this.stadium && this.stadium.images) ? this.stadium.images : [])
+    this.databaseImages = (this.stadium && this.stadium.images) ? this.stadium.images : []
     this.editStadiumForm = new FormGroup({
       'name': new FormControl(this.stadium ? this.stadium.name : null, Validators.required),
       'sports': new FormControl(this.getSportInitValue(), Validators.required),
@@ -63,7 +67,7 @@ export class EditStadiumPage implements OnInit {
       'architect': new FormControl((this.stadium ? this.stadium.architect : null), null),
       'openingDate': new FormControl(this.stadium ? this.stadium.openingDate : null, Validators.required),
       'capacity': new FormControl(this.stadium ? this.stadium.capacity : null, Validators.required),
-      'images': new FormControl(this.previewImages.old, null),
+      'images': new FormControl(this.databaseImages, null),
     })
     if (this.stadium || this.fromLeague) {
       this.handleSportsChoosed()
@@ -101,12 +105,12 @@ export class EditStadiumPage implements OnInit {
 
   handleFileSelected(files) {
     this.imagesBuffer = [...this.imagesBuffer, ...Array.from(files)]
-    const offset = this.previewImages.new.length
+    const offset = this.memoryImages.length
     for (let i = 0; i < files.length; i++) {
       let reader = new FileReader()
       reader.readAsDataURL(files[i])
       reader.onloadend = function (e) {
-        this.previewImages.new[offset+i] = reader.result
+        this.memoryImages[offset+i] = reader.result
       }.bind(this)
     }
   }
@@ -264,12 +268,24 @@ export class EditStadiumPage implements OnInit {
     return this.imageService.getThumbnail(image, size)
   }
 
-  handleFileClick(myEvent) {
-    console.log(myEvent)
-    const popover = this.popoverCtrl.create(FileControlPage)
+  handleFileClick(myEvent, type: 'db' | 'mem', index: number) {
+    const popover = this.popoverCtrl.create(
+      FileControlPage, 
+      { removeFile: this.removeFile.bind(this), index, type }
+    )
     popover.present({
       ev: myEvent
     });
+  }
+
+  removeFile(type: 'db' | 'mem', index: number) {
+    const imageArray = type === 'db' ? this.databaseImages : this.memoryImages
+    const image = imageArray[index]
+    imageArray.splice(index, 1)
+    this.storage.removeFile(image).subscribe(res => {
+      console.log(res)
+    })
+    this.editStadiumForm.get('images').markAsDirty()
   }
 
 }

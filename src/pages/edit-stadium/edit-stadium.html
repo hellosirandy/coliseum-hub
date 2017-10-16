@@ -91,16 +91,16 @@
       <ion-item class="file-preview">
         <h3>{{ 'UPLOAD_IMAGE' | translate }}</h3>
         <ion-row>
-          <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.old" (click)="handleFileClick($event)">
-            <div rectangle ratio="1" class="img-cell old" [style.backgroundImage]="'url('+getThumbnail(img, 200)+')'">
+          <ion-col col-4 col-sm-3 *ngFor="let img of databaseImages; let i = index" (click)="handleFileClick($event, 'db', i)">
+            <div rectangle [ratio]="1" class="img-cell old" [style.backgroundImage]="'url('+getThumbnail(img, 200)+')'">
             </div>
           </ion-col>
-          <ion-col col-4 col-sm-3 *ngFor="let img of previewImages.new" (click)="handleFileClick($event)">
-            <div rectangle ratio="1" class="img-cell new" [style.backgroundImage]="'url('+img+')'">
+          <ion-col col-4 col-sm-3 *ngFor="let img of memoryImages; let i = index" (click)="handleFileClick($event, 'mem', i)">
+            <div rectangle [ratio]="1" class="img-cell new" [style.backgroundImage]="'url('+img+')'">
             </div>
           </ion-col>
           <ion-col col-4 col-sm-3>
-            <div rectangle ratio="1" class="img-cell upload file-upload" (click)="handleFileUploadClick()">
+            <div rectangle [ratio]="1" class="img-cell upload file-upload" (click)="handleFileUploadClick()">
               <div class="file-upload-content">
                 <input type="file"
                 #fileInput multiple

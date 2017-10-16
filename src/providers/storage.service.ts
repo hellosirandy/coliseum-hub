@@ -8,7 +8,8 @@ import { FirebaseConfig } from '../environments/environment';
 export class StorageService {
   storage:firebase.storage.Storage=null;
 
-  constructor() {
+  constructor(
+  ) {
     firebase.initializeApp(FirebaseConfig);
     this.storage = firebase.storage();
   }
@@ -41,5 +42,23 @@ export class StorageService {
         observer.complete();
       });
     });
+  }
+
+  removeFile(url: string) {
+    return Observable.create(observer => {
+      let fileName = this.getFileName(url)
+      const desertRef = this.storage.ref('images/' + fileName)
+      desertRef.delete().then(res => {
+        console.log('deleted', res)
+      }).catch(res => {
+        console.log('failed', res)
+      })
+      observer.next(this.getFileName(url))
+      observer.complete()
+    })
+  }
+
+  getFileName(url) {
+    return url.substring(url.indexOf("images%2F")+9, url.indexOf("?alt=media"));
   }
 }

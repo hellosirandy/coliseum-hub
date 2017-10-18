@@ -12,6 +12,7 @@ export class DatabaseService {
   }
 
   newStadium(stadium: Stadium) {
+    console.log(stadium, typeof stadium.capacity)
     return this.database.list('/stadiums').push(stadium);
   }
 

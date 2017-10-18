@@ -180,6 +180,8 @@ export class EditStadiumPage implements OnInit {
           const multiChildren = ['sports', 'leagues', 'tenants']
           if (multiChildren.indexOf(control) > -1 ) {
             updates[control] = this.generateFireObject(this.editStadiumForm.get(control).value)
+          } else if (control === 'capacity') {
+            updates[control] = Number(this.editStadiumForm.get(control).value)
           } else {
             updates[control] = this.editStadiumForm.get(control).value
           }
@@ -215,7 +217,7 @@ export class EditStadiumPage implements OnInit {
         sports: this.generateFireObject(this.editStadiumForm.get('sports').value),
         leagues: this.generateFireObject(this.editStadiumForm.get('leagues').value),
         tenants: this.generateFireObject(this.editStadiumForm.get('tenants').value),
-        capacity: this.editStadiumForm.get('capacity').value,
+        capacity: Number(this.editStadiumForm.get('capacity').value),
         location: this.editStadiumForm.get('location').value,
         architect: this.editStadiumForm.get('architect').value ? this.editStadiumForm.get('architect').value : '',
         openingDate: this.editStadiumForm.get('openingDate').value,

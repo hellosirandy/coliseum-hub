@@ -1,6 +1,8 @@
 page-edit-stadium {
+  z-index: 999;
   ion-content {
     .scroll-content {
+      background-color: white;
       padding: 32px !important;
     }
     ion-list {

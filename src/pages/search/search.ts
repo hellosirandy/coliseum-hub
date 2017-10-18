@@ -58,7 +58,7 @@ export class SearchPage {
 
   keysIncludes(keys: string[], val: string):boolean {
     for (let key of keys) {
-      if (key.toLowerCase().includes(val)) {
+      if (decodeURI(key.toLowerCase()).includes(val)) {
         return true
       }
     }

@@ -12,8 +12,6 @@ import { Sport } from '../../models/sport'
 import { League } from '../../models/league'
 import { Team } from '../../models/team'
 
-import { Observable } from 'rxjs/Observable';
-
 import { Sports, Leagues, Teams } from '../../statics/sports-leagues-teams'
 
 import { FileControlPage } from '../../pages/file-control/file-control'

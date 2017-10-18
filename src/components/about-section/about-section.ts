@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core'
 
 import { Stadium } from '../../models/stadium'
 
+import * as moment from 'moment'
+
 @Component({
   selector: 'about-section',
   templateUrl: 'about-section.html'
@@ -30,11 +32,16 @@ export class AboutSectionComponent {
     const content = this.stadium[header]
     if (content instanceof Object) {
       result = Object.keys(content)
+    } else if (header === 'capacity') {
+      result = [String(content).replace(/\B(?=(\d{3})+(?!\d))/g, ",")]
+    } else if (header === 'openingDate') {
+      const d = moment(content).format('MMMM Do, YYYY')
+      result = [d]
     } else {
       result = [content]
     }
     for (let i = 0; i < result.length; i++) {
-      result[i] = decodeURI(result[i]).replace('_', ' ')
+      result[i] = decodeURIComponent(result[i]).replace('_', ' ')
     }
     return result
   }

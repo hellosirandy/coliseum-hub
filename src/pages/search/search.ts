@@ -84,7 +84,7 @@ export class SearchPage {
     if (this.searchType !== 'tenants') {
       result =  stadium[this.searchType]
     } else {
-      result =  decodeURI(Object.keys(stadium.tenants).join(', '))
+      result =  decodeURIComponent(Object.keys(stadium.tenants).join(', '))
     }
     return this.highlightSearchText(result)
   }
